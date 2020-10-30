@@ -1,4 +1,5 @@
 # Service Quotes 
+>*Szymon Sus s16785*
 
 ### Definicja projektu:
 Firma XXX jest firmą usługową której potrzebna jest aplikacja do zarządzania wycenami pracy wykonanej dla swoich klientów.
