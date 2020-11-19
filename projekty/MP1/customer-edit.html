@@ -22,40 +22,54 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    <title>Service Quotes | Login</title>
+    <title>Service Quotes | Edit Customer</title>
 </head>
 <body>
  <!-- Navbar -->
  <div class="navbar">
     <div class="container flex">
-        <div class="logo">
+        <div class="logo" onclick="window.location.pathname = '/index.html'">
             <img src="images/favicons/apple-icon-60x60.png" alt="logo">
             <h1>Service Quotes</h1>
             <img src="images/favicons/apple-icon-60x60.png" alt="logo">
         </div>
+
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a class="btn-secondary" href="login.html">Login</a></li>
+                <li><li><a class="active" href="customer-list.html">Customers</a></li></li>
+                <li><li><a href="customer-addresses-list.html">Customer Addresses</a></li></li>
+                <li><li><a href="quotes-list.html">Quotes</a></li></li>
+            </ul>
+        </nav>
+
+        <nav>
+            <ul>
+                <li class="user"><img src="images/user-logo.png" alt="user logo" />Szymon Sus</li>
+                <li><a class="btn-secondary" href="index.html">Logout</a></li>
             </ul>
         </nav>
     </div>
 </div>
 
 <!-- page -->
-<section class="page">
+<section class="page pb-10">
     <div class="container flex">
-        <div class="login-form card">
-            <h2>Login To Dashboard</h2>
+        <div class="customer-form card">
+            <div class="flex between">
+                <h2>Edit Customer</h2>
+            </div>
              <form>
+                 <div class="form-control">
+                     <input type="text" name="name" placeholder="Name" value="Mc Donald's Corporation" required>
+                 </div>
                 <div class="form-control">
-                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="email" name="email" placeholder="Email" value="service@mcdonalds.com" required>
                 </div>
-                <div class="form-control">
-                    <input type="password" name="password" placeholder="Password" required>
+
+                <div class="form-buttons">
+                    <input type="submit" value="Save" class="btn btn-primary">
+                    <a href="customer-list.html" class="btn btn-secondary">Cancel</a>
                 </div>
-                <input type="submit" value="Login" class="btn btn-primary">
             </form>
         </div>
     </div>
@@ -71,7 +85,7 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="customer-list.html">Customers</a></li>
+                <li><a href="features.html">Features</a></li>
                 <li><a href="login.html">Login</a></li>
             </ul>
         </nav>

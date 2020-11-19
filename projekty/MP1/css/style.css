@@ -1,5 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
 
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Stick footer to the bottom */
+.footer {
+  margin-top: auto;
+}
+
 /* UTILITIES */
 :root {
   --primary-color: #0f2235;
@@ -64,13 +76,11 @@
 .bg-secondary,
 .btn-secondary {
   background-color: var(--secondary-color);
-  border: 1px solid var(--darker-red);
   color: #fff;
 }
 
 .btn-secondary:hover {
   background-color: var(--darker-red);
-  border: 1px solid var(--darker-red);
 }
 
 .btn-grey {
@@ -200,6 +210,10 @@
   flex-wrap: wrap;
 }
 
+.between {
+  justify-content: space-between;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -305,6 +319,10 @@
 
 .p-5 {
   padding: 4rem;
+}
+
+.pb-10 {
+  padding-bottom: 25rem;
 }
 
 * {
@@ -458,12 +476,14 @@ pre {
 }
 
 .showcase-form .form-control,
-.login-form .form-control {
+.login-form .form-control,
+.customer-form .form-control {
   margin: 30px 0;
 }
 
 .showcase-form input:not([type="submit"]),
-.login-form input:not([type="submit"]) {
+.login-form input:not([type="submit"]),
+.customer-form input:not([type="submit"]):not([type="reset"]) {
   border: 0;
   border-bottom: 1px solid #b4becb;
   width: 100%;
@@ -472,7 +492,8 @@ pre {
 }
 
 .showcase-form input:focus,
-.login-form input:focus {
+.login-form input:focus,
+.customer-form input:focus {
   outline: none;
 }
 
@@ -577,16 +598,12 @@ pre {
 }
 
 /* Login */
-.login {
-  height: 74vh;
-}
-
-.login .login-form {
+.login-form {
   padding: 40px;
   width: 400px;
 }
 
-.login .login-form input[type="submit"] {
+.login-form input[type="submit"] {
   width: 100%;
 }
 
@@ -657,6 +674,22 @@ pre {
 .page table ul li a {
   padding: 3px 15px;
   font-size: 0.8rem;
+}
+
+/* Customers */
+.customer-form {
+  width: 500px;
+}
+
+.form-buttons {
+  display: flex;
+}
+
+.form-buttons .btn {
+  flex-grow: 1;
+  margin: 0 8px;
+  text-align: center;
+  font-size: 0.85rem;
 }
 
 /* Animations */
