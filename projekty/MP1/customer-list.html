@@ -28,11 +28,20 @@
  <!-- Navbar -->
  <div class="navbar">
     <div class="container flex">
-        <div class="logo">
+        <div class="logo" onclick="window.location.pathname = '/index.html'">
             <img src="images/favicons/apple-icon-60x60.png" alt="logo">
             <h1>Service Quotes</h1>
             <img src="images/favicons/apple-icon-60x60.png" alt="logo">
         </div>
+
+        <nav>
+            <ul>
+                <li><li><a class="active" href="customer-list.html">Customers</a></li></li>
+                <li><li><a href="customer-addresses-list.html">Customer Addresses</a></li></li>
+                <li><li><a href="quotes-list.html">Quotes</a></li></li>
+            </ul>
+        </nav>
+
         <nav>
             <ul>
                 <li class="user"><img src="images/user-logo.png" alt="user logo" />Szymon Sus</li>
@@ -285,6 +294,14 @@
                     </td>
                 </tr>
             </tbody>
+
+            <thead>
+                <tr>
+                    <th colspan="4">
+                        <a href="customer-add.html" class="btn btn-sm btn-secondary">Add New Customer</a>
+                    </th>
+                </tr>
+            </thead>
         </table>
     </div>
 </section>

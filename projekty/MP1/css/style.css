@@ -40,6 +40,11 @@
   border-radius: 5px;
 }
 
+.btn-sm {
+  padding: 3px 15px;
+  font-size: 1rem;
+}
+
 .btn-outline {
   background-color: transparent;
   border: 1px #fff solid;
@@ -149,8 +154,17 @@
   font-size: 4rem;
 }
 
+/* Text positions */
 .text-center {
   text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
 }
 
 /* Alert */
@@ -384,7 +398,8 @@ pre {
   border-radius: 5px;
 }
 
-.navbar a:not(.btn-secondary):hover {
+.navbar a:not(.btn-secondary):hover,
+.navbar a.active {
   border-bottom: 2px #fff solid;
 }
 
