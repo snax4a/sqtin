@@ -276,6 +276,18 @@ body {
   margin: 4rem !important;
 }
 
+.mt-1 {
+  margin-top: 1rem !important;
+}
+
+.mt-2 {
+  margin-top: 2.3rem !important;
+}
+
+.mt-3 {
+  margin-top: 4rem !important;
+}
+
 /* Padding */
 .py-1 {
   padding: 1rem 0 !important;
@@ -370,6 +382,14 @@ pre {
   background: #333;
   color: #fff;
   padding: 10px;
+}
+
+select {
+  border: 1px solid #7f8c8d;
+  color: #2c3e50;
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: 100%;
 }
 
 .hidden {
@@ -686,12 +706,13 @@ pre {
 }
 
 .form-buttons {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 30px;
 }
 
 .form-buttons .btn {
   flex-grow: 1;
-  margin: 0 8px;
   text-align: center;
   font-size: 0.85rem;
 }
@@ -702,6 +723,15 @@ pre {
 
 .customer-details h2 b {
   margin-left: 9px;
+}
+
+.customer-form .address-select {
+  display: grid;
+  grid-template-columns: 1fr 40px 95px;
+}
+
+.customer-form.card {
+  padding: 30px;
 }
 
 /* Animations */
