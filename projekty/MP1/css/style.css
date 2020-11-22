@@ -651,7 +651,8 @@ select {
   position: relative;
 }
 
-.page table thead tr {
+.page table thead tr,
+.page table tfoot tr {
   height: 60px;
   background: var(--primary-color);
 }

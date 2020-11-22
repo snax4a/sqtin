@@ -22,7 +22,7 @@
     <link rel="manifest" href="../manifest.json">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    <title>Service Quotes | Add Customer Address</title>
+    <title>Service Quotes | Quote Details</title>
 </head>
 <body>
  <!-- Navbar -->
@@ -37,8 +37,8 @@
         <nav>
             <ul>
                 <li><a href="customer-list.html">Customers</a></li>
-                <li><a class="active" href="customer-addresses-list.html">Customer Addresses</a></li>
-                <li><a href="quotes-list.html">Quotes</a></li>
+                <li><a href="customer-addresses-list.html">Customer Addresses</a></li>
+                <li><a class="active" href="quotes-list.html">Quotes</a></li>
             </ul>
         </nav>
 
@@ -51,49 +51,64 @@
     </div>
 </div>
 
-<!-- page -->
-<section class="page pb-10">
-    <div class="container flex">
-        <div class="customer-form card">
-            <div class="flex between">
-                <h2>Add Customer Address</h2>
-            </div>
-             <form>
-                <div class="form-control">
-                    <input type="text" name="name" placeholder="Customer Address Name" required>
-                </div>
-
-                <div class="form-control">
-                    <select name="customer">
-                        <option value="">--- Select customer ---</option>
-                        <option value="1">Mc Donald's Corporation</option>
-                    </select>
-                </div>
-
-                <div class="form-control address-select">
-                    <select name="address" required>
-                        <option value="">--- Select address details ---</option>
-                        <option value="1">al. Jerozolimskie 54, 00-024 Warszawa</option>
-                        <option value="2">al. Jerozolimskie 144, 00-037 Warszawa</option>
-                        <option value="3">Świętokrzyska 3, 00-360 Warszawa</option>
-                    </select>
-                    <span class="flex">or</span>
-                    <button type="button" class="btn btn-sm" id="add-address">Add New</button>
-                </div>
-
-                <div class="form-control grid" id="address-form" style="display: none">
-                    <input type="text" name="street" placeholder="Street" required>
-                    <input type="text" name="city" placeholder="City" required>
-                    <input type="text" name="zip_code" placeholder="ZIP Code" required>
-                    <input type="text" name="state" placeholder="State" required>
-                </div>
-
-                <div class="form-buttons mt-2">
-                    <input type="submit" value="Save" class="btn btn-primary">
-                    <a href="customer-addresses-list.html" class="btn btn-secondary">Cancel</a>
-                </div>
-            </form>
+<section class="page pb-0">
+    <div class="container">
+        <h1>Quote Details</h1>
+        <div class="customer-details card grid">
+            <h2>Name: <b>Mc Donald's Corporation</b></h2>
+            <h2>Email: <b>service@mcdonalds.com</b></h2>
+            <a href="customer-edit.html" class="btn btn-sm btn-grey">Edit</a>
         </div>
+    </div>
+</section>
+
+<!-- page -->
+<section class="page">
+    <div class="container">
+        <h1>Customer Addresses</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>ZIP Code</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Dworzec centralny</td>
+                    <td>al. Jerozolimskie 54</td>
+                    <td>Warszawa</td>
+                    <td>00-024</td>
+                    <td>Mazowieckie</td>
+                </tr>
+                <tr>
+                    <td>Dworzec zachodni</td>
+                    <td>al. Jerozolimskie 54</td>
+                    <td>Warszawa</td>
+                    <td>00-024</td>
+                    <td>Mazowieckie</td>
+                </tr>
+                <tr>
+                    <td>Nowy Świat</td>
+                    <td>Świętokrzyska 3</td>
+                    <td>Warszawa</td>
+                    <td>00-360</td>
+                    <td>Mazowieckie</td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <th colspan="5">
+                        <a href="customer-address-add.html" class="btn btn-sm btn-secondary">Add New Address</a>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 </section>
 
@@ -120,6 +135,5 @@
         </div>
     </div>
 </footer>
-<script src="../scripts/main.js"></script>
 </body>
 </html>
