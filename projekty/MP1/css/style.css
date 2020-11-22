@@ -735,6 +735,20 @@ select {
   padding: 30px;
 }
 
+/* Quotes */
+.quote-details {
+  grid-template-columns: 1fr 1fr;
+  padding: 30px;
+}
+
+.quote-details h2 {
+  margin: 0;
+}
+
+.quote-details .approved {
+  color: var(--success-color);
+}
+
 /* Animations */
 @keyframes slideInFromLeft {
   0% {
