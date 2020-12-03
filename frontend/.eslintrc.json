@@ -48,7 +48,7 @@
       }
     ],
     "no-console": 0,
-    "import/prefer-default-export": 1,
+    "import/prefer-default-export": 0,
     "import": 0,
     "func-names": 0,
     "space-before-function-paren": 0,
@@ -61,7 +61,7 @@
     "react/no-array-index-key": 0,
     "react/react-in-jsx-scope": 0,
     "react/prefer-stateless-function": 0,
-    "react/forbid-prop-types": 0,
+    "react/prop-types": 0,
     "react/jsx-props-no-spreading": 0,
     "react/no-unescaped-entities": 0,
     "jsx-a11y/accessible-emoji": 0,
@@ -90,7 +90,7 @@
       {
         "trailingComma": "es5",
         "singleQuote": true,
-        "printWidth": 80
+        "printWidth": 100
       }
     ],
     "jsx-a11y/href-no-hash": "off",

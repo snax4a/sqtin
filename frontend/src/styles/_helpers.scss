@@ -1,0 +1,177 @@
+/* Margin */
+.my-1 {
+  margin: 1rem 0 !important;
+}
+
+.my-2 {
+  margin: 1.5rem 0 !important;
+}
+
+.my-3 {
+  margin: 2rem 0 !important;
+}
+
+.my-4 {
+  margin: 3rem 0 !important;
+}
+
+.my-5 {
+  margin: 4rem 0 !important;
+}
+
+.m-1 {
+  margin: 1rem !important;
+}
+
+.m-2 {
+  margin: 1.5rem !important;
+}
+
+.m-3 {
+  margin: 2rem !important;
+}
+
+.m-4 {
+  margin: 3rem !important;
+}
+
+.m-5 {
+  margin: 4rem !important;
+}
+
+.mt-1 {
+  margin-top: 1rem !important;
+}
+
+.mt-2 {
+  margin-top: 2.3rem !important;
+}
+
+.mt-3 {
+  margin-top: 4rem !important;
+}
+
+/* Padding */
+.py-1 {
+  padding: 1rem 0 !important;
+}
+
+.py-2 {
+  padding: 1.5rem 0 !important;
+}
+
+.py-3 {
+  padding: 2rem 0 !important;
+}
+
+.py-4 {
+  padding: 3rem 0 !important;
+}
+
+.py-5 {
+  padding: 4rem 0 !important;
+}
+
+.py-6 {
+  padding: 6rem 0 !important;
+}
+
+.p-1 {
+  padding: 1rem !important;
+}
+
+.p-2 {
+  padding: 1.5rem !important;
+}
+
+.p-3 {
+  padding: 2rem !important;
+}
+
+.p-4 {
+  padding: 3rem !important;
+}
+
+.p-5 {
+  padding: 4rem !important;
+}
+
+.pb-10 {
+  padding-bottom: 25rem !important;
+}
+
+.pb-0 {
+  padding-bottom: 0 !important;
+}
+
+/* Text positions */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Text sizes */
+.lead {
+  font-size: 20px;
+}
+
+.sm {
+  font-size: 1rem;
+}
+
+.md {
+  font-size: 2rem;
+}
+
+.lg {
+  font-size: 3rem;
+}
+
+.xl {
+  font-size: 4rem;
+}
+
+/* Other */
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
