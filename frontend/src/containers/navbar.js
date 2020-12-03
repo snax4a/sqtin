@@ -20,7 +20,7 @@ export function NavbarContainer({ children }) {
         </Navbar.MenuItem>
 
         <Navbar.MenuItem>
-          <Navbar.TextLink to={ROUTES.HOME}>Features</Navbar.TextLink>
+          <Navbar.TextLink to={ROUTES.FEATURES}>Features</Navbar.TextLink>
         </Navbar.MenuItem>
 
         <Navbar.MenuItem>

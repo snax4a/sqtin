@@ -2,13 +2,17 @@
 @import 'helpers';
 
 body {
-  min-height: 100vh;
   margin: 0;
-  display: flex;
-  flex-direction: column;
+
   font-family: 'Lato', sans-serif;
   color: #333;
   line-height: 1.6;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -16,15 +20,6 @@ body {
   margin: 0 auto;
   overflow: auto;
   padding: 0 40px;
-}
-
-.card {
-  background-color: #fff;
-  color: #333;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  margin: 10px;
 }
 
 .btn {
@@ -197,97 +192,6 @@ select {
 .hidden {
   visibility: hidden;
   height: 0;
-}
-
-/* Showcase */
-.showcase {
-  height: 400px;
-  background-color: $primary-color;
-  color: #fff;
-  position: relative;
-}
-
-.showcase h1 {
-  font-size: 40px;
-}
-
-.showcase p {
-  margin: 20px 0;
-}
-
-.showcase .grid {
-  overflow: visible;
-  grid-template-columns: 55% auto;
-  gap: 30px;
-}
-
-.showcase-text {
-  animation: slideInFromLeft 1s ease-in;
-}
-
-.showcase-text h1 {
-  margin-top: 0;
-}
-
-.showcase-form {
-  position: relative;
-  top: 65px;
-  height: 360px;
-  width: 400px;
-  padding: 40px;
-  z-index: 100;
-  justify-self: flex-end;
-  animation: slideInFromRight 1s ease-in;
-}
-
-.showcase-form .form-control,
-.login-form .form-control,
-.customer-form .form-control {
-  margin: 30px 0;
-}
-
-.showcase-form input:not([type='submit']),
-.login-form input:not([type='submit']),
-.customer-form input:not([type='submit']):not([type='reset']) {
-  border: 0;
-  border-bottom: 1px solid #b4becb;
-  width: 100%;
-  padding: 6px 4px;
-  font-size: 16px;
-}
-
-.showcase-form input:focus,
-.login-form input:focus,
-.customer-form input:focus {
-  outline: none;
-}
-
-.showcase::after {
-  content: '';
-  position: absolute;
-  height: 100px;
-  bottom: -95px;
-  right: 0;
-  left: 0;
-  background: #fcfcfc;
-  transform: skewY(-5deg);
-  -webkit-transform: skewY(-5deg);
-  -moz-transform: skewY(-5deg);
-  -ms-transform: skewY(-5deg);
-}
-
-.showcase::before {
-  content: '';
-  position: absolute;
-  height: 100px;
-  bottom: -95px;
-  right: 0;
-  left: 0;
-  background: #fcfcfc;
-  transform: skewY(5deg);
-  -webkit-transform: skewY(5deg);
-  -moz-transform: skewY(5deg);
-  -ms-transform: skewY(5deg);
 }
 
 /* Stats */
@@ -531,26 +435,9 @@ select {
 /* Tablets and under */
 @media (max-width: 966px) {
   .grid,
-  .showcase .grid,
   .stats .grid {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-  }
-
-  .showcase {
-    height: auto;
-  }
-
-  .showcase-text {
-    text-align: center;
-    margin-top: 40px;
-    animation: slideInFromTop 1s ease-in;
-  }
-
-  .showcase-form {
-    justify-self: center;
-    margin: auto;
-    animation: slideInFromBottom 1s ease-in;
   }
 }
 

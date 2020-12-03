@@ -1,0 +1,93 @@
+@import '../../../styles/variables';
+
+.showcase {
+  height: 400px;
+  background-color: $primary-color;
+  color: #fff;
+  position: relative;
+
+  h1,
+  p {
+    animation: slideInFromLeft 1s ease-in;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+
+  .form {
+    position: relative;
+    top: 65px;
+    height: 360px;
+    width: 400px;
+    padding: 40px;
+    z-index: 100;
+    justify-self: flex-end;
+    animation: slideInFromRight 1s ease-in;
+  }
+
+  .grid {
+    overflow: visible;
+    grid-template-columns: 55% auto;
+    gap: 30px;
+  }
+
+  .btn {
+    display: block;
+    width: max-content;
+  }
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    height: 100px;
+    bottom: -95px;
+    right: 0;
+    left: 0;
+    background: #fcfcfc;
+    transform: skewY(-5deg);
+    -webkit-transform: skewY(-5deg);
+    -moz-transform: skewY(-5deg);
+    -ms-transform: skewY(-5deg);
+  }
+
+  &::before {
+    transform: skewY(5deg);
+    -webkit-transform: skewY(5deg);
+    -moz-transform: skewY(5deg);
+    -ms-transform: skewY(5deg);
+  }
+}
+
+@media (max-width: 966px) {
+  .showcase {
+    height: auto;
+
+    h1,
+    p {
+      text-align: center;
+      margin-top: 40px;
+      animation: slideInFromTop 1s ease-in;
+    }
+
+    .btn {
+      margin: 0 auto;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+    }
+
+    .form {
+      justify-self: center;
+      margin: auto;
+      animation: slideInFromBottom 1s ease-in;
+    }
+  }
+}

@@ -16,7 +16,7 @@ export function FooterContainer({ children }) {
       <Footer.Column>
         <Footer.Nav>
           <Footer.NavItem to={ROUTES.HOME}>Home</Footer.NavItem>
-          <Footer.NavItem to={ROUTES.HOME}>Features</Footer.NavItem>
+          <Footer.NavItem to={ROUTES.FEATURES}>Features</Footer.NavItem>
           <Footer.NavItem to={ROUTES.LOGIN}>Login</Footer.NavItem>
         </Footer.Nav>
       </Footer.Column>
