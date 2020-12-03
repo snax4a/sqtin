@@ -349,19 +349,6 @@ select {
   margin: 0;
 }
 
-/* Footer */
-.footer .flex {
-  justify-content: space-between;
-}
-
-.footer .social {
-  text-align: right;
-}
-
-.footer .social a {
-  margin: 0 10px;
-}
-
 /* Login */
 .login-form {
   padding: 40px;
@@ -550,23 +537,6 @@ select {
     grid-template-rows: 1fr;
   }
 
-  .footer .grid {
-    gap: 30px;
-  }
-
-  .footer h1 {
-    margin: 0;
-  }
-
-  .footer .grid {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .footer .social {
-    text-align: center;
-  }
-
   .showcase {
     height: auto;
   }
@@ -581,29 +551,6 @@ select {
     justify-self: center;
     margin: auto;
     animation: slideInFromBottom 1s ease-in;
-  }
-}
-
-/* Between mobile and tablet */
-@media (max-width: 675px) {
-  .navbar {
-    height: 150px;
-  }
-
-  .navbar .logo {
-    padding-top: 20px;
-  }
-
-  .navbar nav {
-    padding-bottom: 20px;
-  }
-
-  .navbar .flex {
-    flex-direction: column;
-  }
-
-  .navbar ul {
-    padding: 10px;
   }
 }
 
