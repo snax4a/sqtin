@@ -1,0 +1,68 @@
+@import '../../../styles/variables';
+
+.stats {
+  padding-top: 110px;
+  padding-bottom: 30px;
+  background: #fcfcfc;
+
+  .stats__header {
+    text-align: center;
+    max-width: 500px;
+  }
+
+  .stats__row {
+    animation: opacityIn 1s ease-in;
+    display: grid;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .stats__box {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    column-gap: 25px;
+    flex-direction: column;
+    background: #fff;
+    text-align: left;
+
+    .stats__icon svg,
+    .stats__number {
+      font-size: 35px;
+      color: $secondary-color;
+      font-weight: bold;
+    }
+
+    .stats__icon {
+      grid-row: 1 / span 2;
+      padding-right: 20px;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+      line-height: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        font-size: 35px;
+      }
+    }
+
+    p {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 966px) {
+  .stats {
+    .stats__row {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+    }
+  }
+}

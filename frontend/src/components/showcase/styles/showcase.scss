@@ -91,3 +91,11 @@
     }
   }
 }
+
+@media (max-width: 420px) {
+  .showcase {
+    .form {
+      width: 300px;
+    }
+  }
+}
