@@ -25,7 +25,7 @@ Navbar.LogoImage = function NavbarLogoImage({ alt, ...restProps }) {
 };
 
 Navbar.LogoText = function NavbarLogoText({ children, ...restProps }) {
-  return <h1>{children}</h1>;
+  return <h1 {...restProps}>{children}</h1>;
 };
 
 Navbar.Menu = function NavbarMenu({ children, ...restProps }) {
