@@ -69,3 +69,25 @@
     }
   }
 }
+
+@media (max-width: 675px) {
+  .navbar {
+    height: 150px;
+
+    .flex {
+      flex-direction: column;
+    }
+
+    .logo {
+      padding-top: 20px;
+    }
+
+    nav {
+      padding-bottom: 20px;
+    }
+
+    ul {
+      padding: 10px;
+    }
+  }
+}
