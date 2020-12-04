@@ -4,6 +4,7 @@ import { NavbarContainer } from '../containers/navbar';
 import { PageContainer } from '../containers/page';
 import { FooterContainer } from '../containers/footer';
 import { Form } from '../components';
+import * as ROUTES from '../constants/routes';
 
 export default function Login() {
   const history = useHistory();
@@ -18,6 +19,7 @@ export default function Login() {
     event.preventDefault();
     console.log(event);
     // TODO implement login handler
+    history.push(ROUTES.DASHBOARD);
   };
 
   return (
