@@ -29,9 +29,10 @@ Form.Input = function FormInput({ ...restProps }) {
   );
 };
 
-Form.Submit = function FormSubmit({ children, ...restProps }) {
+Form.Submit = function FormSubmit({ className, children, ...restProps }) {
+  const classNames = `btn btn-primary ${className}`;
   return (
-    <button type="button" className="btn btn-primary" {...restProps}>
+    <button type="button" className={classNames} {...restProps}>
       {children}
     </button>
   );

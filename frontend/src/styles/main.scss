@@ -3,10 +3,9 @@
 
 body {
   margin: 0;
-
   font-family: 'Lato', sans-serif;
   color: #333;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 #root {
@@ -39,6 +38,11 @@ body {
 .btn-outline {
   background-color: transparent;
   border: 1px #fff solid;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
 }
 
 .btn:hover {
