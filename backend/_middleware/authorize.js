@@ -1,12 +1,13 @@
 const jwt = require("express-jwt");
 const { secret } = require("config");
-const db = require("_helpers/db");
+const accountService = require("accounts/account.service");
+const role = require("../_helpers/role");
 
 module.exports = authorize;
 
 function authorize(roles = []) {
   // roles param can be a single role string (e.g. Role.User or 'User')
-  // or an array of roles (e.g. [Role.Admin, Role.User] or ['Admin', 'User'])
+  // or an array of roles (e.g. [Role.Manager, Role.User] or ['Manager', 'User'])
   if (typeof roles === "string") {
     roles = [roles];
   }
@@ -17,16 +18,23 @@ function authorize(roles = []) {
 
     // authorize based on user role
     async (req, res, next) => {
-      const account = await db.Account.findById(req.user.id);
-      const refreshTokens = await db.RefreshToken.find({ account: account.id });
+      const account = await db.Account.findByPk(req.user.id, {
+        include: [{ model: db.Role }],
+      });
 
-      if (!account || (roles.length && !roles.includes(account.role))) {
+      const roleName = account.role ? account.role.name : undefined;
+
+      if (
+        !account ||
+        (roles.length && (!roleName || !roles.includes(roleName)))
+      ) {
         // account no longer exists or role not authorized
         return res.status(401).json({ message: "Unauthorized" });
       }
 
       // authentication and authorization successful
-      req.user.role = account.role;
+      req.user.role = roleName;
+      const refreshTokens = await account.getRefreshTokens();
       req.user.ownsToken = (token) =>
         !!refreshTokens.find((x) => x.token === token);
       next();

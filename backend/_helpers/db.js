@@ -1,6 +1,7 @@
 const config = require("config");
 const mysql = require("mysql2/promise");
 const { Sequelize } = require("sequelize");
+const Role = require("./role");
 
 module.exports = db = {};
 
@@ -23,8 +24,20 @@ async function initialize() {
   });
 
   // init models and add them to the exported db object
-  db.User = require("users/user.model")(sequelize);
+  db.Role = require("accounts/role.model")(sequelize);
+  db.Account = require("accounts/account.model")(sequelize);
+  db.RefreshToken = require("accounts/refresh-token.model")(sequelize);
 
+  // define relationships
+  db.Role.hasMany(db.Account);
+  db.Account.belongsTo(db.Role);
+  db.Account.hasMany(db.RefreshToken, { onDelete: "CASCADE" });
+  db.RefreshToken.belongsTo(db.Account);
   // sync all models with database
   await sequelize.sync();
+
+  // insert roles into table
+  for (const property in Role) {
+    await db.Role.findOrCreate({ where: { name: Role[property] } });
+  }
 }
