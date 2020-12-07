@@ -1,6 +1,7 @@
 const config = require("config");
 const mysql = require("mysql2/promise");
 const { Sequelize } = require("sequelize");
+const Role = require("./role");
 
 module.exports = db = {};
 
@@ -32,7 +33,11 @@ async function initialize() {
   db.Account.belongsTo(db.Role);
   db.Account.hasMany(db.RefreshToken, { onDelete: "CASCADE" });
   db.RefreshToken.belongsTo(db.Account);
-
   // sync all models with database
   await sequelize.sync();
+
+  // insert roles into table
+  for (const property in Role) {
+    await db.Role.findOrCreate({ where: { name: Role[property] } });
+  }
 }

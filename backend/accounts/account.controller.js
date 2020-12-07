@@ -78,8 +78,8 @@ function revokeToken(req, res, next) {
 
 function registerSchema(req, res, next) {
   const schema = Joi.object({
-    firstName: Joi.string().required(),
-    lastName: Joi.string().required(),
+    firstName: Joi.string(),
+    lastName: Joi.string(),
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
     confirmPassword: Joi.string().valid(Joi.ref("password")).required(),
@@ -92,8 +92,7 @@ function register(req, res, next) {
     .register(req.body, req.get("origin"))
     .then(() =>
       res.json({
-        message:
-          "Registration successful, please check your email for verification instructions",
+        message: "Registration successful, you can now login.",
       })
     )
     .catch(next);
@@ -125,7 +124,7 @@ function createSchema(req, res, next) {
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
     confirmPassword: Joi.string().valid(Joi.ref("password")).required(),
-    role: Joi.string().valid(Role.Manager, Role.User).required(),
+    roleId: Joi.number().integer().min(1).required(),
   });
   validateRequest(req, next, schema);
 }
@@ -138,7 +137,7 @@ function create(req, res, next) {
 }
 
 function updateSchema(req, res, next) {
-  const schemaRules = {
+  let schemaRules = {
     firstName: Joi.string().empty(""),
     lastName: Joi.string().empty(""),
     email: Joi.string().email().empty(""),
@@ -148,7 +147,7 @@ function updateSchema(req, res, next) {
 
   // only managers can update role
   if (req.user.role === Role.Manager) {
-    schemaRules.role = Joi.string().valid(Role.Manager, Role.User).empty("");
+    schemaRules.roleId = Joi.number().integer().min(1).optional();
   }
 
   const schema = Joi.object(schemaRules).with("password", "confirmPassword");

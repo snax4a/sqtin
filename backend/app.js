@@ -28,6 +28,11 @@ app.use(
 // api routes
 app.use("/accounts", require("accounts/account.controller"));
 
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  throw "not found";
+});
+
 // error handler
 app.use(errorHandler);
 

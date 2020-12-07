@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const db = require("_helpers/db");
 const Role = require("_helpers/role");
+const { getRoleByName } = require("_helpers/utils");
 
 module.exports = {
   authenticate,
@@ -22,11 +23,7 @@ async function authenticate({ email, password, ipAddress }) {
     where: { email },
   });
 
-  if (
-    !account ||
-    !account.isVerified ||
-    !(await bcrypt.compare(password, account.passwordHash))
-  ) {
+  if (!account || !(await bcrypt.compare(password, account.passwordHash))) {
     throw "Email or password is incorrect";
   }
 
@@ -88,8 +85,8 @@ async function register(params, origin) {
 
   // first registered account is an manager
   const isFirstAccount = (await db.Account.count()) === 0;
-  account.role = isFirstAccount ? Role.Manager : Role.User;
-  account.verificationToken = randomTokenString();
+  const role = await getRoleByName(isFirstAccount ? Role.Manager : Role.User);
+  account.roleId = role.id;
 
   // hash password
   account.passwordHash = await hash(params.password);
@@ -99,7 +96,9 @@ async function register(params, origin) {
 }
 
 async function getAll() {
-  const accounts = await db.Account.findAll();
+  const accounts = await db.Account.findAll({
+    include: [{ model: db.Role }],
+  });
   return accounts.map((x) => basicDetails(x));
 }
 
@@ -146,7 +145,13 @@ async function update(id, params) {
   // copy params to account and save
   Object.assign(account, params);
   account.updated = Date.now();
+
   await account.save();
+
+  // if roleId was changed update role object in response
+  if (params.roleId) {
+    account.role = await db.Role.findByPk(params.roleId);
+  }
 
   return basicDetails(account);
 }
@@ -159,7 +164,9 @@ async function _delete(id) {
 // helper functions
 
 async function getAccount(id) {
-  const account = await db.Account.findByPk(id);
+  const account = await db.Account.findByPk(id, {
+    include: [{ model: db.Role }],
+  });
   if (!account) throw "Account not found";
   return account;
 }
