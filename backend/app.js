@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 
-const { errorHandler } = require("./_middleware");
+const { errorHandler } = require("_middleware");
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
@@ -16,10 +16,17 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors());
+
+// allow cors requests from any origin and with credentials
+app.use(
+  cors({
+    origin: (origin, callback) => callback(null, true),
+    credentials: true,
+  })
+);
 
 // api routes
-app.use("/users", require("users/user.controller"));
+app.use("/accounts", require("accounts/account.controller"));
 
 // error handler
 app.use(errorHandler);
