@@ -12,17 +12,8 @@ router.get("/:id", authorize([Role.Manager, Role.ServiceProvider]), getById);
 router.post("/", authorize(Role.Manager), createSchema, create);
 router.put("/:id", authorize(Role.Manager), updateSchema, update);
 router.delete("/:id", authorize(Role.Manager), _delete);
-router.get(
-  "/:id/details",
-  authorize([Role.Manager, Role.ServiceProvider]),
-  getDetails
-);
-router.post(
-  "/:id/address",
-  authorize(Role.Manager),
-  createAddressSchema,
-  createAddress
-);
+router.get("/:id/details", authorize([Role.Manager, Role.ServiceProvider]), getDetails);
+router.post("/:id/address", authorize(Role.Manager), createAddressSchema, createAddress);
 
 module.exports = router;
 
