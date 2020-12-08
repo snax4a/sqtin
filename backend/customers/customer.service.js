@@ -32,11 +32,7 @@ exports.update = async (id, params) => {
   const customer = await getCustomer(id);
 
   // validate (if name was changed)
-  if (
-    params.name &&
-    customer.name !== params.name &&
-    (await getCustomerByName(params.name))
-  ) {
+  if (params.name && customer.name !== params.name && (await getCustomerByName(params.name))) {
     throw `Customer ${params.name} already exists`;
   }
 
@@ -80,7 +76,6 @@ exports.createAddress = async (customerId, params) => {
 
   const address = await db.Address.findOrCreate({
     where: { ...addressParams },
-    raw: true,
   });
 
   const customerAddress = new db.CustomerAddress({
@@ -92,7 +87,7 @@ exports.createAddress = async (customerId, params) => {
   // save customerAddress
   await customerAddress.save();
 
-  return { name: customerAddress.name, address: { ...address[0] } };
+  return { name: customerAddress.name, address: { ...address[0].dataValues } };
 };
 
 // helper functions

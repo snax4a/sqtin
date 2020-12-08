@@ -1,4 +1,5 @@
 const { DataTypes } = require("sequelize");
+const { db } = require("_helpers/sequelize");
 
 module.exports = model;
 
@@ -23,6 +24,17 @@ function model(sequelize) {
   const options = {
     // disable default timestamp fields (createdAt and updatedAt)
     timestamps: false,
+    scopes: {
+      // include related models
+      withDetails: {
+        attributes: { exclude: ["accountId", "customerId", "addressId"] },
+        include: [
+          { model: db.Account.scope("withRole") },
+          { model: db.Customer },
+          { model: db.Address },
+        ],
+      },
+    },
   };
 
   return sequelize.define("quote", attributes, options);
