@@ -1,4 +1,5 @@
 const { DataTypes } = require("sequelize");
+const { db } = require("../_helpers/sequelize");
 
 module.exports = model;
 
@@ -26,6 +27,7 @@ function model(sequelize) {
     scopes: {
       // include hash with this scope
       withHash: { attributes: {} },
+      withRole: { include: [{ model: db.Role }] },
     },
   };
 
