@@ -173,7 +173,7 @@ function _delete(req, res, next) {
   }
 
   accountService
-    .delete(req.params.id)
+    ._delete(req.params.id)
     .then(() => res.json({ message: "Account deleted successfully" }))
     .catch(next);
 }

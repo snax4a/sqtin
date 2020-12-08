@@ -1,7 +1,6 @@
 const jwt = require("express-jwt");
 const { secret } = require("config");
-const accountService = require("accounts/account.service");
-const role = require("../_helpers/role");
+const { db } = require("_helpers/sequelize");
 
 module.exports = authorize;
 
@@ -18,10 +17,7 @@ function authorize(roles = []) {
 
     // authorize based on user role
     async (req, res, next) => {
-      const account = await db.Account.findByPk(req.user.id, {
-        include: [{ model: db.Role }],
-      });
-
+      const account = await db.Account.scope("withRole").findByPk(req.user.id);
       const roleName = account.role ? account.role.name : undefined;
 
       if (

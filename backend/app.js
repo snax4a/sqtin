@@ -27,6 +27,7 @@ app.use(
 
 // api routes
 app.use("/accounts", require("accounts/account.controller"));
+app.use("/customers", require("customers/customer.controller"));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

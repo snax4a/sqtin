@@ -2,7 +2,7 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
-const db = require("_helpers/db");
+const { db } = require("_helpers/sequelize");
 const Role = require("_helpers/role");
 const { getRoleByName } = require("_helpers/utils");
 
@@ -114,7 +114,6 @@ async function create(params) {
   }
 
   const account = new db.Account(params);
-  account.verified = Date.now();
 
   // hash password
   account.passwordHash = await hash(params.password);
