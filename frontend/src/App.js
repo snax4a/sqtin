@@ -1,25 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Features, Home, Login, Dashboard } from './pages';
-import * as ROUTES from './constants/routes';
+import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
+import { PrivateRoute, Alert } from 'components';
+import * as ROUTES from 'constants/routes';
 
-export default function App() {
+import { Features, Home, Login, Dashboard } from './pages';
+
+function App() {
+  const { pathname } = useLocation();
+
   return (
-    <Router>
+    <>
+      <Alert />
       <Switch>
-        <Route exact path={ROUTES.HOME}>
-          <Home />
-        </Route>
-        <Route exact path={ROUTES.FEATURES}>
-          <Features />
-        </Route>
-        <Route exact path={ROUTES.LOGIN}>
-          <Login />
-        </Route>
-        <Route exact path={ROUTES.DASHBOARD}>
-          <Dashboard />
-        </Route>
+        <Redirect from="/:url*(/+)" to={pathname.slice(0, -1)} />
+        <Route exact path={ROUTES.HOME} component={Home} />
+        <Route path={ROUTES.FEATURES} component={Features} />
+        <PrivateRoute path={ROUTES.DASHBOARD} component={Dashboard} />
+        <Route path={ROUTES.LOGIN} component={Login} />
+        <Redirect from="*" to="/" />
       </Switch>
-    </Router>
+    </>
   );
 }
+
+export { App };

@@ -51,3 +51,11 @@ Navbar.ButtonLink = function NavbarButtonLink({ children, ...restProps }) {
     </Link>
   );
 };
+
+Navbar.Button = function NavbarButton({ children, ...restProps }) {
+  return (
+    <button type="button" className="btn-secondary" {...restProps}>
+      {children}
+    </button>
+  );
+};

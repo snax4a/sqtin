@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { accountService, alertService } from '_services';
+import { useHistory, useLocation } from 'react-router-dom';
+import * as ROUTES from 'constants/routes';
 import { NavbarContainer } from '../containers/navbar';
 import { PageContainer } from '../containers/page';
 import { FooterContainer } from '../containers/footer';
 import { Form } from '../components';
-import * as ROUTES from '../constants/routes';
 
 export default function Login() {
   const history = useHistory();
-
+  const location = useLocation();
+  const [isSubmitting, setSubmitting] = useState(false);
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -17,9 +19,21 @@ export default function Login() {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    console.log(event);
-    // TODO implement login handler
-    history.push(ROUTES.DASHBOARD);
+    setSubmitting(true);
+
+    alertService.clear();
+    accountService
+      .login(emailAddress, password)
+      .then(() => {
+        const { from } = location.state || { from: { pathname: ROUTES.DASHBOARD } };
+        history.push(from);
+      })
+      .catch((error) => {
+        alertService.error(error);
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
   };
 
   return (
@@ -43,6 +57,7 @@ export default function Login() {
             onChange={({ target }) => setPassword(target.value)}
           />
           <Form.Submit disabled={isInvalid} type="submit" className="btn-block">
+            {isSubmitting && 'SPINNER...'}
             Login
           </Form.Submit>
         </Form>
