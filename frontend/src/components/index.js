@@ -6,3 +6,4 @@ export { default as Card } from './card';
 export { default as Form } from './form';
 export { default as PrivateRoute } from './private-route';
 export { default as Alert } from './alert';
+export { default as Loader } from './loader';

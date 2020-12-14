@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import { alertService, AlertType } from '_services';
 import { useHistory } from 'react-router-dom';
+import './styles/alert.scss';
 
 const propTypes = {
   id: PropTypes.string,
@@ -104,17 +105,15 @@ export default function Alert({ id, fade }) {
   if (!alerts.length) return null;
 
   return (
-    <div className="container">
-      <div className="m-3">
-        {alerts.map((alert, index) => (
-          <div key={index} className={cssClasses(alert)}>
-            <span className="close" onClick={() => removeAlert(alert)}>
-              &times;
-            </span>
-            <span dangerouslySetInnerHTML={{ __html: alert.message }} />
-          </div>
-        ))}
-      </div>
+    <div className="alert-container">
+      {alerts.map((alert, index) => (
+        <div key={index} className={cssClasses(alert)}>
+          <span dangerouslySetInnerHTML={{ __html: alert.message }} />
+          <span className="close" onClick={() => removeAlert(alert)}>
+            &times;
+          </span>
+        </div>
+      ))}
     </div>
   );
 }

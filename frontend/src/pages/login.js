@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { accountService, alertService } from '_services';
+import { accountService } from '_services';
 import { useHistory, useLocation } from 'react-router-dom';
 import * as ROUTES from 'constants/routes';
 import { NavbarContainer } from '../containers/navbar';
 import { PageContainer } from '../containers/page';
 import { FooterContainer } from '../containers/footer';
-import { Form } from '../components';
+import { Form, Loader } from '../components';
 
 export default function Login() {
   const history = useHistory();
@@ -20,8 +20,8 @@ export default function Login() {
   const handleLogin = (event) => {
     event.preventDefault();
     setSubmitting(true);
+    setError('');
 
-    alertService.clear();
     accountService
       .login(emailAddress, password)
       .then(() => {
@@ -29,7 +29,7 @@ export default function Login() {
         history.push(from);
       })
       .catch((error) => {
-        alertService.error(error);
+        setError(error);
       })
       .finally(() => {
         setSubmitting(false);
@@ -57,7 +57,7 @@ export default function Login() {
             onChange={({ target }) => setPassword(target.value)}
           />
           <Form.Submit disabled={isInvalid} type="submit" className="btn-block">
-            {isSubmitting && 'SPINNER...'}
+            {isSubmitting && <Loader />}
             Login
           </Form.Submit>
         </Form>
