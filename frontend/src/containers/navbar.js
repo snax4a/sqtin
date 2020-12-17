@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Navbar } from '../components';
 import * as ROUTES from '../constants/routes';
 import logo from '../logo.png';
+import userImage from '../user-image.png';
 
 export function NavbarContainer({ children }) {
   const [user, setUser] = useState(null);
@@ -22,51 +23,63 @@ export function NavbarContainer({ children }) {
           <Navbar.LogoImage src={logo} alt="Service Quotes" />
         </Navbar.Logo>
       </Link>
-      <Navbar.Menu>
-        {!user && (
-          <>
-            <Navbar.MenuItem>
-              <Navbar.TextLink to={ROUTES.HOME}>Home</Navbar.TextLink>
-            </Navbar.MenuItem>
 
-            <Navbar.MenuItem>
-              <Navbar.TextLink to={ROUTES.FEATURES}>Features</Navbar.TextLink>
-            </Navbar.MenuItem>
+      {!user && (
+        <Navbar.Menu>
+          <Navbar.MenuItem>
+            <Navbar.TextLink to={ROUTES.HOME}>Home</Navbar.TextLink>
+          </Navbar.MenuItem>
 
-            <Navbar.MenuItem>
-              <Navbar.ButtonLink to={ROUTES.LOGIN}>Login</Navbar.ButtonLink>
-            </Navbar.MenuItem>
-          </>
-        )}
+          <Navbar.MenuItem>
+            <Navbar.TextLink to={ROUTES.FEATURES}>Features</Navbar.TextLink>
+          </Navbar.MenuItem>
 
-        {user && <LoggedInNav />}
-      </Navbar.Menu>
+          <Navbar.MenuItem>
+            <Navbar.ButtonLink to={ROUTES.LOGIN}>Login</Navbar.ButtonLink>
+          </Navbar.MenuItem>
+        </Navbar.Menu>
+      )}
+
+      {user && <LoggedInNav user={user} />}
 
       {children}
     </Navbar>
   );
 }
 
-function LoggedInNav() {
+function LoggedInNav(props) {
+  const { user } = props;
+
   return (
     <>
-      <Navbar.MenuItem>
-        <Navbar.TextLink to={ROUTES.CUSTOMERS}>Customers</Navbar.TextLink>
-      </Navbar.MenuItem>
+      <Navbar.Menu>
+        <Navbar.MenuItem>
+          <Navbar.TextLink to={ROUTES.CUSTOMERS}>Customers</Navbar.TextLink>
+        </Navbar.MenuItem>
 
-      <Navbar.MenuItem>
-        <Navbar.TextLink to={ROUTES.CUSTOMER_ADDRESSES}>Customer Addresses</Navbar.TextLink>
-      </Navbar.MenuItem>
+        <Navbar.MenuItem>
+          <Navbar.TextLink to={ROUTES.CUSTOMER_ADDRESSES}>Customer Addresses</Navbar.TextLink>
+        </Navbar.MenuItem>
 
-      <Navbar.MenuItem>
-        <Navbar.TextLink to={ROUTES.QUOTES}>Quotes</Navbar.TextLink>
-      </Navbar.MenuItem>
+        <Navbar.MenuItem>
+          <Navbar.TextLink to={ROUTES.QUOTES}>Quotes</Navbar.TextLink>
+        </Navbar.MenuItem>
+      </Navbar.Menu>
 
-      <Navbar.MenuItem>
-        <Navbar.ButtonLink to="#" onClick={accountService.logout}>
-          Logout
-        </Navbar.ButtonLink>
-      </Navbar.MenuItem>
+      <Navbar.User>
+        <Navbar.MenuItem className="user">
+          <Navbar.TextLink to={ROUTES.ACCOUNT_DETAILS}>
+            <Navbar.UserImage src={userImage} />
+            {user.firstName} {user.lastName}
+          </Navbar.TextLink>
+        </Navbar.MenuItem>
+
+        <Navbar.MenuItem>
+          <Navbar.ButtonLink to="#" onClick={accountService.logout}>
+            Logout
+          </Navbar.ButtonLink>
+        </Navbar.MenuItem>
+      </Navbar.User>
     </>
   );
 }

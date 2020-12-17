@@ -52,10 +52,10 @@ Navbar.ButtonLink = function NavbarButtonLink({ children, ...restProps }) {
   );
 };
 
-Navbar.Button = function NavbarButton({ children, ...restProps }) {
-  return (
-    <button type="button" className="btn-secondary" {...restProps}>
-      {children}
-    </button>
-  );
+Navbar.User = function NavbarUser({ children, ...restProps }) {
+  return <Navbar.Menu {...restProps}>{children}</Navbar.Menu>;
+};
+
+Navbar.UserImage = function NavbarUserImage({ ...restProps }) {
+  return <img {...restProps} alt="User avatar" />;
 };

@@ -3,6 +3,7 @@
 .navbar {
   background-color: $primary-color;
   height: 80px;
+  color: #fff;
 
   .container {
     height: 100%;
@@ -60,6 +61,11 @@
 
       .user {
         margin-right: 20px;
+
+        a {
+          display: flex;
+          align-items: center;
+        }
 
         img {
           width: 40px;
