@@ -63,7 +63,9 @@ function LoggedInNav() {
       </Navbar.MenuItem>
 
       <Navbar.MenuItem>
-        <Navbar.Button onClick={accountService.logout}>Logout</Navbar.Button>
+        <Navbar.ButtonLink to="#" onClick={accountService.logout}>
+          Logout
+        </Navbar.ButtonLink>
       </Navbar.MenuItem>
     </>
   );
