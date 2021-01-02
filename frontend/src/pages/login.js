@@ -64,7 +64,11 @@ export default function Login() {
     <>
       <NavbarContainer />
       <PageContainer>
-        <Form onSubmit={handleLogin} method="POST" style={{ padding: 40, width: 400 }}>
+        <Form
+          onSubmit={handleLogin}
+          method="POST"
+          style={{ padding: 40, width: 400, marginLeft: 'auto', marginRight: 'auto' }}
+        >
           <Form.Title>Login To Dashboard</Form.Title>
           {error && <Form.Error>{error}</Form.Error>}
           {validationErrors.length > 0 && (

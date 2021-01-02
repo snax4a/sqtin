@@ -106,15 +106,15 @@
 
 /* Text positions */
 .text-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .text-left {
-  text-align: left;
+  text-align: left !important;
 }
 
 .text-right {
-  text-align: right;
+  text-align: right !important;
 }
 
 /* Text sizes */
@@ -147,6 +147,10 @@
   height: 100%;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -174,4 +178,9 @@
 
 .grid-4 {
   grid-template-columns: repeat(4, 1fr);
+}
+
+.margin-auto {
+  margin-right: auto;
+  margin-left: auto;
 }
