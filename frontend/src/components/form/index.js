@@ -37,3 +37,11 @@ Form.Submit = function FormSubmit({ className, children, ...restProps }) {
     </button>
   );
 };
+
+Form.ButtonsContainer = function FormButtonsContainer({ children, ...restProps }) {
+  return (
+    <div className="form__buttons-container" {...restProps}>
+      {children}
+    </div>
+  );
+};

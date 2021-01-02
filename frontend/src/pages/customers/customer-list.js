@@ -43,7 +43,7 @@ export default function CustomerList() {
             {isFetching && <Table.Loader />}
             {!isFetching && customers.length === 0 && <Table.NoRecords />}
             {customers.map((customer) => (
-              <tr>
+              <tr key={customer.id}>
                 <td>{customer.id}</td>
                 <td>{customer.name}</td>
                 <td>{customer.email}</td>
