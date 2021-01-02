@@ -51,3 +51,11 @@ Navbar.ButtonLink = function NavbarButtonLink({ children, ...restProps }) {
     </Link>
   );
 };
+
+Navbar.User = function NavbarUser({ children, ...restProps }) {
+  return <Navbar.Menu {...restProps}>{children}</Navbar.Menu>;
+};
+
+Navbar.UserImage = function NavbarUserImage({ ...restProps }) {
+  return <img {...restProps} alt="User avatar" />;
+};

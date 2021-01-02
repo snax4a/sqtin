@@ -16,7 +16,7 @@ body {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1150px;
   margin: 0 auto;
   overflow: auto;
   padding: 0 40px;
@@ -42,8 +42,10 @@ body {
 }
 
 .btn-block {
-  display: block;
+  display: flex;
   width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn:hover {
@@ -125,28 +127,6 @@ body {
 
 .text-light {
   color: $light-color;
-}
-
-/* Alert */
-.alert {
-  background-color: $light-color;
-  padding: 10px 20px;
-  font-weight: bold;
-  margin: 15px 0;
-}
-
-.alert i {
-  margin-right: 10px;
-}
-
-.alert-success {
-  background-color: $success-color;
-  color: #fff;
-}
-
-.alert-error {
-  background-color: $error-color;
-  color: #fff;
 }
 
 * {

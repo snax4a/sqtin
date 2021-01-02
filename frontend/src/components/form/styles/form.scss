@@ -1,9 +1,9 @@
 .form {
   .form__error {
-    background: #e87c03;
+    background: #bf2428;
     border-radius: 4px;
     font-size: 14px;
-    margin: 0 0 16px;
+    margin: 20px 0 16px 0;
     color: white;
     padding: 15px 20px;
   }
@@ -20,6 +20,14 @@
 
       &:focus {
         outline: none;
+      }
+    }
+
+    input.invalid {
+      border-color: #bf2428;
+
+      &::placeholder {
+        color: #bf2428;
       }
     }
   }
