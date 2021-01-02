@@ -39,7 +39,8 @@
   }
 
   .btn {
-    display: block;
+    display: flex;
+    align-items: center;
     width: max-content;
   }
 
