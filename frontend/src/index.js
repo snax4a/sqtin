@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { history } from '_helpers';
 import { accountService } from './_services';
 
-import { App } from './app';
+import { App } from './App';
 import 'normalize.css';
 import './styles/main.scss';
 
