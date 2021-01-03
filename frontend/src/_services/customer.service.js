@@ -7,6 +7,7 @@ const baseUrl = `${API_URL}/customers`;
 export const customerService = {
   getAll,
   getById,
+  getDetails,
   create,
   update,
   delete: _delete,
@@ -18,6 +19,10 @@ function getAll() {
 
 function getById(id) {
   return fetchWrapper.get(`${baseUrl}/${id}`);
+}
+
+function getDetails(id) {
+  return fetchWrapper.get(`${baseUrl}/${id}/details`);
 }
 
 function create(params) {

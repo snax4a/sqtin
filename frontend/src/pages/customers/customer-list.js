@@ -12,6 +12,10 @@ export default function CustomerList() {
   const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
+    fetchCustomers();
+  }, []);
+
+  const fetchCustomers = () => {
     setIsFetching(true);
 
     customerService
@@ -21,7 +25,19 @@ export default function CustomerList() {
         alertService.error(error);
       })
       .finally(() => setIsFetching(false));
-  }, []);
+  };
+
+  const deleteCustomer = (id) => {
+    customerService
+      .delete(id)
+      .then(() => {
+        fetchCustomers();
+        alertService.success('The customer was successfully deleted.');
+      })
+      .catch((error) => {
+        alertService.error(error);
+      });
+  };
 
   return (
     <>
@@ -60,9 +76,13 @@ export default function CustomerList() {
                       </Link>
                     </li>
                     <li>
-                      <Link to="#" className="btn btn-secondary">
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => deleteCustomer(customer.id)}
+                      >
                         Delete
-                      </Link>
+                      </button>
                     </li>
                   </ul>
                 </td>

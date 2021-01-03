@@ -3,7 +3,15 @@ import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 import { PrivateRoute, Alert } from 'components';
 import * as ROUTES from 'constants/routes';
 
-import { Features, Home, Login, Dashboard, CustomerList, CustomerAddEdit } from './pages';
+import {
+  Features,
+  Home,
+  Login,
+  Dashboard,
+  CustomerList,
+  CustomerAddEdit,
+  CustomerDetails,
+} from './pages';
 
 function App() {
   const { pathname } = useLocation();
@@ -20,6 +28,7 @@ function App() {
         <PrivateRoute path={ROUTES.CUSTOMERS} component={CustomerList} />
         <PrivateRoute path={ROUTES.CUSTOMER_ADD} component={CustomerAddEdit} />
         <PrivateRoute path={ROUTES.CUSTOMER_EDIT} component={CustomerAddEdit} />
+        <PrivateRoute path={ROUTES.CUSTOMER_DETAILS} component={CustomerDetails} />
         <Redirect from="*" to="/" />
       </Switch>
     </>

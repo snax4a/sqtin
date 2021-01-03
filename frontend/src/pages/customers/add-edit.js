@@ -59,14 +59,13 @@ export default function CustomerAddEdit({ match }) {
     customerService
       .create(fields)
       .then(() => {
+        setSubmitting(false);
         history.push({ pathname: ROUTES.CUSTOMERS });
         alertService.success('The customer was successfully created.');
       })
       .catch((error) => {
-        setError(error);
-      })
-      .finally(() => {
         setSubmitting(false);
+        setError(error);
       });
   };
 
@@ -74,14 +73,13 @@ export default function CustomerAddEdit({ match }) {
     customerService
       .update(id, fields)
       .then(() => {
+        setSubmitting(false);
         history.push({ pathname: `/customer/${id}/details` });
         alertService.success('The customer was successfully updated.');
       })
       .catch((error) => {
-        setError(error);
-      })
-      .finally(() => {
         setSubmitting(false);
+        setError(error);
       });
   };
 

@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 table {
   border-collapse: collapse;
   background: #fff;
@@ -9,7 +11,7 @@ table {
   thead tr,
   tfoot tr {
     height: 60px;
-    background: var(--primary-color);
+    background: $primary-color;
   }
 
   thead {
@@ -24,12 +26,19 @@ table {
     }
   }
 
+  tr th:last-child,
   tr td:last-child {
     padding-right: 50px;
   }
 
+  tr th:first-child,
   tr td:first-child {
     padding-left: 50px;
+  }
+
+  td,
+  th {
+    text-align: left;
   }
 
   tbody {
@@ -40,12 +49,23 @@ table {
       line-height: 1.2;
       font-weight: unset;
 
-      &:nth-child(odd) {
+      &:nth-child(even) {
         background-color: #f5f5f5;
       }
-    }
-  }
 
-  tfoot {
+      td {
+        ul {
+          display: flex;
+          justify-content: space-between;
+
+          li {
+            .btn {
+              padding: 3px 15px;
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+    }
   }
 }

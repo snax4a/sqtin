@@ -1,5 +1,6 @@
 import React from 'react';
 import { Loader } from 'components';
+import './styles/table.scss';
 
 export default function Table({ children, ...restProps }) {
   return <table {...restProps}>{children}</table>;
@@ -20,7 +21,7 @@ Table.Foot = function TableFoot({ children, ...restProps }) {
 Table.NoRecords = function TableNoRecords({ children, ...restProps }) {
   return (
     <tr>
-      <td className="text-center py-3" colSpan="4" {...restProps}>
+      <td className="text-center py-3" colSpan="100%" {...restProps}>
         There are no records yet.{children}
       </td>
     </tr>
@@ -30,7 +31,7 @@ Table.NoRecords = function TableNoRecords({ children, ...restProps }) {
 Table.Loader = function TableLoader({ children, ...restProps }) {
   return (
     <tr>
-      <td className="text-center py-3" colSpan="4" {...restProps}>
+      <td className="text-center py-3" colSpan="100%" {...restProps}>
         <Loader style={{ width: 25, height: 25 }} />
       </td>
     </tr>

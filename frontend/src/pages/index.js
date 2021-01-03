@@ -4,3 +4,4 @@ export { default as Login } from './login';
 export { default as Dashboard } from './dashboard';
 export { default as CustomerList } from './customers/customer-list';
 export { default as CustomerAddEdit } from './customers/add-edit';
+export { default as CustomerDetails } from './customers/details';
