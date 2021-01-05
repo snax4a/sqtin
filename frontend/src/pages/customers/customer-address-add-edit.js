@@ -119,12 +119,15 @@ export default function CustomerAddressAddEdit({ match }) {
   const updateCustomerAddress = (customerId, addressId, fields) => {
     customerAddressService
       .update(customerId, addressId, fields)
-      .then(() => {
+      .then((res) => {
         setSubmitting(false);
-        history.push({ pathname: `/customer/${customerId}/address/${addressId}/details` });
+        history.push({
+          pathname: `/customer/${customerId}/address/${res.address.id}/details`,
+        });
         alertService.success('The customer address was successfully updated.');
       })
       .catch((error) => {
+        console.log(error);
         setSubmitting(false);
         setError(error);
       });
