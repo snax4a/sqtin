@@ -13,17 +13,15 @@ export default function CustomerDetails({ match }) {
   const { id } = match.params;
 
   useEffect(() => {
-    if (id) {
-      setIsFetching(true);
+    setIsFetching(true);
 
-      customerService
-        .getDetails(id)
-        .then((res) => setCustomer(res))
-        .catch((error) => {
-          alertService.error(error);
-        })
-        .finally(() => setIsFetching(false));
-    }
+    customerService
+      .getDetails(id)
+      .then((res) => setCustomer(res))
+      .catch((error) => {
+        alertService.error(error);
+      })
+      .finally(() => setIsFetching(false));
   }, [id]);
 
   return (

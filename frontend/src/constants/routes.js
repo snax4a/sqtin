@@ -9,4 +9,6 @@ export const CUSTOMER_EDIT = '/customer/:id/edit';
 export const CUSTOMER_ADD = '/customer/add';
 export const CUSTOMER_ADDRESSES = '/customers/addresses';
 export const CUSTOMER_ADDRESS_ADD = '/customer/address/add';
+export const CUSTOMER_ADDRESS_DETAILS = '/customer/:customerId/address/:addressId/details';
+export const CUSTOMER_ADDRESS_EDIT = '/customer/:customerId/address/:addressId/edit';
 export const QUOTES = '/quotes';

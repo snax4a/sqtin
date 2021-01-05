@@ -5,3 +5,5 @@ export { default as Dashboard } from './dashboard';
 export { default as CustomerList } from './customers/customer-list';
 export { default as CustomerAddEdit } from './customers/add-edit';
 export { default as CustomerDetails } from './customers/details';
+export { default as CustomerAddressList } from './customers/customer-address-list';
+export { default as CustomerAddressAddEdit } from './customers/customer-address-add-edit';

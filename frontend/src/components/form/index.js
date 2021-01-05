@@ -1,9 +1,10 @@
 import React from 'react';
 import './styles/form.scss';
 
-export default function Form({ children, ...restProps }) {
+export default function Form({ className, children, ...restProps }) {
+  const classNames = `form card ${className}`;
   return (
-    <form className="form card" {...restProps}>
+    <form className={classNames} {...restProps}>
       {children}
     </form>
   );
@@ -27,6 +28,18 @@ Form.Input = function FormInput({ ...restProps }) {
       <input {...restProps} />
     </div>
   );
+};
+
+Form.Select = function FormSelect({ children, ...restProps }) {
+  return (
+    <div className="form__control">
+      <select {...restProps}>{children}</select>
+    </div>
+  );
+};
+
+Form.Option = function FormOption({ children, ...restProps }) {
+  return <option {...restProps}>{children}</option>;
 };
 
 Form.Submit = function FormSubmit({ className, children, ...restProps }) {

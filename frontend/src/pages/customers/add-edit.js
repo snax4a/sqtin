@@ -20,9 +20,8 @@ export default function CustomerAddEdit({ match }) {
   const [error, setError] = useState('');
   const [validationErrors, setValidationErrors] = useState([]);
 
-  if (id) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
+  useEffect(() => {
+    if (id) {
       setIsFetching(true);
 
       customerService
@@ -33,8 +32,8 @@ export default function CustomerAddEdit({ match }) {
         })
         .catch((error) => setError(error))
         .finally(() => setIsFetching(false));
-    }, [id]);
-  }
+    }
+  }, [id]);
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
@@ -105,7 +104,7 @@ export default function CustomerAddEdit({ match }) {
         <Form
           onSubmit={handleSave}
           method="POST"
-          style={{ padding: 40, width: 400, marginLeft: 'auto', marginRight: 'auto' }}
+          style={{ padding: 40, width: 500, marginLeft: 'auto', marginRight: 'auto' }}
         >
           {isFetching && <Loader centered />}
           {!isFetching && (
