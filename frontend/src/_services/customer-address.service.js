@@ -11,6 +11,7 @@ export const customerAddressService = {
   update,
   delete: _delete,
   getAllAddresses,
+  getDetails,
 };
 
 function getAll() {
@@ -19,6 +20,10 @@ function getAll() {
 
 function getById(customerId, addressId) {
   return fetchWrapper.get(`${baseUrl}/customer/${customerId}/address/${addressId}`);
+}
+
+function getDetails(customerId, addressId) {
+  return fetchWrapper.get(`${baseUrl}/customer/${customerId}/address/${addressId}/details`);
 }
 
 function create(params) {

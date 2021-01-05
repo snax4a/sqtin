@@ -10,6 +10,7 @@ const customerAddressService = require("./customer-address.service");
 router.get("/address-list", authorize(Role.Manager), getAddressList);
 router.get("/", authorize(Role.Manager), getAll);
 router.get("/customer/:customerId/address/:addressId", authorize(Role.Manager), getById);
+router.get("/customer/:customerId/address/:addressId/details", authorize(Role.Manager), getDetails);
 router.post("/", authorize(Role.Manager), createSchema, create);
 router.put(
   "/customer/:customerId/address/:addressId",
@@ -32,6 +33,14 @@ function getById(req, res, next) {
   const { customerId, addressId } = req.params;
   customerAddressService
     .getById(customerId, addressId)
+    .then((customerAddress) => (customerAddress ? res.json(customerAddress) : res.sendStatus(404)))
+    .catch(next);
+}
+
+function getDetails(req, res, next) {
+  const { customerId, addressId } = req.params;
+  customerAddressService
+    .getDetails(customerId, addressId)
     .then((customerAddress) => (customerAddress ? res.json(customerAddress) : res.sendStatus(404)))
     .catch(next);
 }

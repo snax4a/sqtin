@@ -8,10 +8,11 @@ exports.getById = async (customerId, addressId) => {
   return await getCustomerAddress(customerId, addressId);
 };
 
-exports.getWithAddresses = async (id) => {
-  const customer = await db.Customer.scope("withAddresses").findByPk(id);
-  if (!customer) throw "Customer not found";
-  return customer;
+exports.getDetails = async (customerId, addressId) => {
+  return await db.CustomerAddress.findOne({
+    where: { customerId, addressId },
+    include: [db.Customer, db.Address],
+  });
 };
 
 exports.getAllAddresses = async () => {

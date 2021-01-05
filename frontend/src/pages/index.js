@@ -7,3 +7,4 @@ export { default as CustomerAddEdit } from './customers/add-edit';
 export { default as CustomerDetails } from './customers/details';
 export { default as CustomerAddressList } from './customers/customer-address-list';
 export { default as CustomerAddressAddEdit } from './customers/customer-address-add-edit';
+export { default as CustomerAddressDetails } from './customers/customer-address-details';

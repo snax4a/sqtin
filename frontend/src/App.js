@@ -13,6 +13,7 @@ import {
   CustomerDetails,
   CustomerAddressList,
   CustomerAddressAddEdit,
+  CustomerAddressDetails,
 } from './pages';
 
 function App() {
@@ -37,6 +38,11 @@ function App() {
           exact
           path={ROUTES.CUSTOMER_ADDRESS_EDIT}
           component={CustomerAddressAddEdit}
+        />
+        <PrivateRoute
+          exact
+          path={ROUTES.CUSTOMER_ADDRESS_DETAILS}
+          component={CustomerAddressDetails}
         />
         <Redirect from="*" to="/" />
       </Switch>
