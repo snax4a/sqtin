@@ -28,6 +28,7 @@ app.use(
 // api routes
 app.use("/accounts", require("accounts/account.controller"));
 app.use("/customers", require("customers/customer.controller"));
+app.use("/customer-addresses", require("customer-addresses/customer-address.controller"));
 app.use("/quotes", require("quotes/quote.controller"));
 
 // catch 404 and forward to error handler

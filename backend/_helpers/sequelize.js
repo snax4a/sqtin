@@ -29,7 +29,7 @@ async function initialize() {
   db.Account = require("accounts/account.model")(sequelize);
   db.RefreshToken = require("accounts/refresh-token.model")(sequelize);
   db.Address = require("customers/address.model")(sequelize);
-  db.CustomerAddress = require("customers/customer-address.model")(sequelize);
+  db.CustomerAddress = require("customer-addresses/customer-address.model")(sequelize);
   db.Customer = require("customers/customer.model")(sequelize);
   db.Quote = require("quotes/quote.model")(sequelize);
 

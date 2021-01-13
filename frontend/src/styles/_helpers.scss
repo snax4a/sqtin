@@ -51,6 +51,10 @@
   margin-top: 4rem !important;
 }
 
+.mt-4 {
+  margin-top: 5.5rem !important;
+}
+
 /* Padding */
 .py-1 {
   padding: 1rem 0 !important;
@@ -106,15 +110,15 @@
 
 /* Text positions */
 .text-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .text-left {
-  text-align: left;
+  text-align: left !important;
 }
 
 .text-right {
-  text-align: right;
+  text-align: right !important;
 }
 
 /* Text sizes */
@@ -147,6 +151,10 @@
   height: 100%;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -168,10 +176,19 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+.grid-2-sm {
+  grid-template-columns: 1fr 60px;
+}
+
 .grid-3 {
   grid-template-columns: repeat(3, 1fr);
 }
 
 .grid-4 {
   grid-template-columns: repeat(4, 1fr);
+}
+
+.margin-auto {
+  margin-right: auto;
+  margin-left: auto;
 }

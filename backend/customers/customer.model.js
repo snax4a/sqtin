@@ -23,7 +23,7 @@ function model(sequelize) {
       withAddresses: {
         include: [
           {
-            model: db.CustomerAddress.scope("onlyName"),
+            model: db.CustomerAddress,
             include: [
               {
                 model: db.Address,

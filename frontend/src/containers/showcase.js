@@ -76,7 +76,7 @@ export function ShowcaseContainer({ children }) {
       </Showcase.Column>
 
       <Showcase.Column>
-        <Form onSubmit={handleRegister} method="POST">
+        <Form onSubmit={handleRegister} method="POST" className="big-shadow">
           <Form.Title>Register account</Form.Title>
 
           {error && <Form.Error>{error}</Form.Error>}

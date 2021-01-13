@@ -62,36 +62,7 @@ exports._delete = async (id) => {
   }
 };
 
-exports.createAddress = async (customerId, params) => {
-  const { name, ...addressParams } = params;
-
-  // validate
-  if (!(await getCustomer(customerId))) {
-    throw `Customer not found`;
-  }
-
-  if (await getAddressByCustomerAndName(customerId, name)) {
-    throw `Customer address ${name} already exists`;
-  }
-
-  const address = await db.Address.findOrCreate({
-    where: { ...addressParams },
-  });
-
-  const customerAddress = new db.CustomerAddress({
-    customerId,
-    addressId: address[0].id,
-    name,
-  });
-
-  // save customerAddress
-  await customerAddress.save();
-
-  return { name: customerAddress.name, address: { ...address[0].dataValues } };
-};
-
 // helper functions
-
 const getCustomer = async (id) => {
   const customer = await db.Customer.findByPk(id);
   if (!customer) throw "Customer not found";
@@ -100,10 +71,4 @@ const getCustomer = async (id) => {
 
 const getCustomerByName = async (name) => {
   return await db.Customer.findOne({ where: { name } });
-};
-
-const getAddressByCustomerAndName = async (customerId, addressName) => {
-  return await db.CustomerAddress.findOne({
-    where: { customerId, name: addressName },
-  });
 };

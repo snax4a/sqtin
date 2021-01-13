@@ -13,7 +13,6 @@ router.post("/", authorize(Role.Manager), createSchema, create);
 router.put("/:id", authorize(Role.Manager), updateSchema, update);
 router.delete("/:id", authorize(Role.Manager), _delete);
 router.get("/:id/details", authorize([Role.Manager, Role.ServiceProvider]), getDetails);
-router.post("/:id/address", authorize(Role.Manager), createAddressSchema, createAddress);
 
 module.exports = router;
 
@@ -72,23 +71,5 @@ function _delete(req, res, next) {
   customerService
     ._delete(req.params.id)
     .then(() => res.json({ message: "Customer deleted successfully" }))
-    .catch(next);
-}
-
-function createAddressSchema(req, res, next) {
-  const schema = Joi.object({
-    name: Joi.string().required(),
-    street: Joi.string().required(),
-    city: Joi.string().required(),
-    state: Joi.string().required(),
-    zipCode: Joi.string().required(),
-  });
-  validateRequest(req, next, schema);
-}
-
-function createAddress(req, res, next) {
-  customerService
-    .createAddress(req.params.id, req.body)
-    .then((address) => res.json(address))
     .catch(next);
 }

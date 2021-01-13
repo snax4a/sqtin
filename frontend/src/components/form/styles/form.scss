@@ -23,12 +23,30 @@
       }
     }
 
-    input.invalid {
+    .invalid {
       border-color: #bf2428;
 
       &::placeholder {
         color: #bf2428;
       }
     }
+
+    .form__control {
+      margin: 0;
+    }
+  }
+
+  .form__buttons-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+  }
+
+  select {
+    border: 1px solid #7f8c8d;
+    color: #2c3e50;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 100%;
   }
 }
