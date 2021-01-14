@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavbarContainer } from 'containers/navbar';
 import { PageContainer } from 'containers/page';
 import { FooterContainer } from 'containers/footer';
@@ -8,6 +9,7 @@ import * as ROUTES from 'constants/routes';
 import { alertService, customerAddressService } from '_services';
 
 export default function CustomerAddressList() {
+  const { t } = useTranslation();
   const [isFetching, setIsFetching] = useState(false);
   const [customerAddresses, setCustomerAddresses] = useState([]);
 
@@ -32,7 +34,7 @@ export default function CustomerAddressList() {
       .delete(customerId, addressId)
       .then(() => {
         fetchCustomerAddresses();
-        alertService.success('Customer address was successfully deleted.');
+        alertService.success(t('Customer address deleted'));
       })
       .catch((error) => {
         alertService.error(error);
@@ -43,15 +45,15 @@ export default function CustomerAddressList() {
     <>
       <NavbarContainer />
       <PageContainer>
-        <h1>Customer Address List</h1>
+        <h1>{t('Customer Address List')}</h1>
 
         <Table>
           <Table.Head>
             <tr>
-              <th>Customer Name</th>
-              <th>Address Name</th>
-              <th>City</th>
-              <th style={{ width: 290 }}>Actions</th>
+              <th>{t('Customer Name')}</th>
+              <th>{t('Address Name')}</th>
+              <th>{t('City')}</th>
+              <th style={{ width: 290 }}>{t('Actions')}</th>
             </tr>
           </Table.Head>
 
@@ -70,15 +72,15 @@ export default function CustomerAddressList() {
                         to={`/customer/${ca.customerId}/address/${ca.addressId}/details`}
                         className="btn btn-blue"
                       >
-                        Details
+                        {t('Details')}
                       </Link>
                     </li>
                     <li>
                       <Link
                         to={`/customer/${ca.customerId}/address/${ca.addressId}/edit`}
-                        className="btn btn-grey"
+                        className="btn btn-grey edit-btn"
                       >
-                        Edit
+                        {t('Edit')}
                       </Link>
                     </li>
                     <li>
@@ -87,7 +89,7 @@ export default function CustomerAddressList() {
                         className="btn btn-secondary"
                         onClick={() => deleteCustomerAddress(ca.customerId, ca.addressId)}
                       >
-                        Delete
+                        {t('Delete')}
                       </button>
                     </li>
                   </ul>
@@ -100,7 +102,7 @@ export default function CustomerAddressList() {
             <tr>
               <th colSpan="4">
                 <Link to={ROUTES.CUSTOMER_ADDRESS_ADD} className="btn btn-sm btn-secondary">
-                  Add New Address
+                  {t('Add New Address')}
                 </Link>
               </th>
             </tr>

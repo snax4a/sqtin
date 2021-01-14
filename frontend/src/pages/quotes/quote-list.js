@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavbarContainer } from 'containers/navbar';
 import { PageContainer } from 'containers/page';
 import { FooterContainer } from 'containers/footer';
@@ -8,6 +9,7 @@ import * as ROUTES from 'constants/routes';
 import { alertService, quoteService } from '_services';
 
 export default function QuoteList() {
+  const { t } = useTranslation();
   const [quotes, setQuotes] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
 
@@ -32,7 +34,7 @@ export default function QuoteList() {
       .delete(id)
       .then(() => {
         fetchQuotes();
-        alertService.success('Quote was successfully deleted.');
+        alertService.success(t('Quote deleted'));
       })
       .catch((error) => {
         alertService.error(error);
@@ -43,16 +45,16 @@ export default function QuoteList() {
     <>
       <NavbarContainer />
       <PageContainer>
-        <h1>Quote List</h1>
+        <h1>{t('Quote List')}</h1>
 
         <Table>
           <Table.Head>
             <tr>
-              <th>Customer Name</th>
-              <th>Description</th>
-              <th>Total</th>
-              <th>Status</th>
-              <th style={{ width: 290 }}>Actions</th>
+              <th>{t('Customer Name')}</th>
+              <th>{t('Description')}</th>
+              <th>{t('Total')}</th>
+              <th>{t('Status')}</th>
+              <th style={{ width: 290 }}>{t('Actions')}</th>
             </tr>
           </Table.Head>
 
@@ -69,12 +71,12 @@ export default function QuoteList() {
                   <ul>
                     <li>
                       <Link to={`/quotes/${quote.id}/details`} className="btn btn-blue">
-                        Details
+                        {t('Details')}
                       </Link>
                     </li>
                     <li>
                       <Link to={`/quotes/${quote.id}/edit`} className="btn btn-grey">
-                        Edit
+                        {t('Edit')}
                       </Link>
                     </li>
                     <li>
@@ -83,7 +85,7 @@ export default function QuoteList() {
                         className="btn btn-secondary"
                         onClick={() => deleteQuote(quote.id)}
                       >
-                        Delete
+                        {t('Delete')}
                       </button>
                     </li>
                   </ul>
@@ -96,7 +98,7 @@ export default function QuoteList() {
             <tr>
               <th colSpan="5">
                 <Link to={ROUTES.QUOTE_ADD} className="btn btn-sm btn-secondary">
-                  Add New Quote
+                  {t('Add New Quote')}
                 </Link>
               </th>
             </tr>

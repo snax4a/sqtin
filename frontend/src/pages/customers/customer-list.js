@@ -6,8 +6,10 @@ import { Table } from 'components';
 import { Link } from 'react-router-dom';
 import * as ROUTES from 'constants/routes';
 import { alertService, customerService } from '_services';
+import { useTranslation } from 'react-i18next';
 
 export default function CustomerList() {
+  const { t } = useTranslation();
   const [customers, setCustomers] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
 
@@ -32,7 +34,7 @@ export default function CustomerList() {
       .delete(id)
       .then(() => {
         fetchCustomers();
-        alertService.success('The customer was successfully deleted.');
+        alertService.success(t('Customer deleted'));
       })
       .catch((error) => {
         alertService.error(error);
@@ -43,15 +45,15 @@ export default function CustomerList() {
     <>
       <NavbarContainer />
       <PageContainer>
-        <h1>Customer List</h1>
+        <h1>{t('Customer List')}</h1>
 
         <Table>
           <Table.Head>
             <tr>
               <th>ID</th>
-              <th>Name</th>
+              <th>{t('Name')}</th>
               <th>E-mail</th>
-              <th style={{ width: 290 }}>Actions</th>
+              <th style={{ width: 290 }}>{t('Actions')}</th>
             </tr>
           </Table.Head>
 
@@ -67,12 +69,12 @@ export default function CustomerList() {
                   <ul>
                     <li>
                       <Link to={`/customer/${customer.id}/details`} className="btn btn-blue">
-                        Details
+                        {t('Details')}
                       </Link>
                     </li>
                     <li>
                       <Link to={`/customer/${customer.id}/edit`} className="btn btn-grey">
-                        Edit
+                        {t('Edit')}
                       </Link>
                     </li>
                     <li>
@@ -81,7 +83,7 @@ export default function CustomerList() {
                         className="btn btn-secondary"
                         onClick={() => deleteCustomer(customer.id)}
                       >
-                        Delete
+                        {t('Delete')}
                       </button>
                     </li>
                   </ul>
@@ -94,7 +96,7 @@ export default function CustomerList() {
             <tr>
               <th colSpan="4">
                 <Link to={ROUTES.CUSTOMER_ADD} className="btn btn-sm btn-secondary">
-                  Add New Customer
+                  {t('Add New Customer')}
                 </Link>
               </th>
             </tr>

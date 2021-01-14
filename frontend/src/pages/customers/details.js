@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavbarContainer } from 'containers/navbar';
 import { PageContainer } from 'containers/page';
 import { FooterContainer } from 'containers/footer';
@@ -8,6 +9,7 @@ import * as ROUTES from 'constants/routes';
 import { alertService, customerService } from '_services';
 
 export default function CustomerDetails({ match }) {
+  const { t } = useTranslation();
   const [customer, setCustomer] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const { id } = match.params;
@@ -28,34 +30,34 @@ export default function CustomerDetails({ match }) {
     <>
       <NavbarContainer />
       <PageContainer>
-        <h1>Customer Details</h1>
+        <h1>{t('Customer Details')}</h1>
 
         <Card className={`customer-details ${!isFetching ? 'grid' : ''}`}>
           {isFetching && <Loader centered />}
           {!isFetching && customer && (
             <>
               <h2>
-                Name: <b>{customer.name}</b>
+                {t('Name')}: <b>{customer.name}</b>
               </h2>
               <h2>
                 Email: <b>{customer.email}</b>
               </h2>
-              <Link to={`/customer/${customer.id}/edit`} className="btn btn-sm btn-grey">
-                Edit
+              <Link to={`/customer/${customer.id}/edit`} className="btn btn-sm btn-grey edit-btn">
+                {t('Edit')}
               </Link>
             </>
           )}
         </Card>
 
-        <h1 className="mt-4">Customer Addresses</h1>
+        <h1 className="mt-4">{t('1 Customer Addresses')}</h1>
         <Table>
           <Table.Head>
             <tr>
-              <th>Name</th>
-              <th>Street</th>
-              <th>City</th>
-              <th>ZIP Code</th>
-              <th>State</th>
+              <th>{t('Name')}</th>
+              <th>{t('Street')}</th>
+              <th>{t('City')}</th>
+              <th>{t('ZIP Code')}</th>
+              <th>{t('State')}</th>
             </tr>
           </Table.Head>
 
@@ -81,7 +83,7 @@ export default function CustomerDetails({ match }) {
             <tr>
               <th colSpan="5">
                 <Link to={ROUTES.CUSTOMER_ADDRESS_ADD} className="btn btn-sm btn-secondary">
-                  Add New Address
+                  {t('Add New Address')}
                 </Link>
               </th>
             </tr>

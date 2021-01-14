@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { NavbarContainer } from 'containers/navbar';
 import { PageContainer } from 'containers/page';
@@ -10,6 +11,7 @@ import * as STATUSES from 'constants/statuses';
 import { alertService, quoteService } from '_services';
 
 export default function QuoteDetails({ match }) {
+  const { t } = useTranslation();
   const [quote, setQuote] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const { id } = match.params;
@@ -43,7 +45,7 @@ export default function QuoteDetails({ match }) {
     <>
       <NavbarContainer />
       <PageContainer>
-        <h1>Quote Details</h1>
+        <h1>{t('Quote Details')}</h1>
 
         <Card>
           {isFetching && <Loader centered />}
@@ -51,16 +53,16 @@ export default function QuoteDetails({ match }) {
             <>
               <div className="flex between">
                 <div>
-                  Created At: <b>{new Date(quote.created).toLocaleString()}</b>
+                  {t('Created At')}: <b>{new Date(quote.created).toLocaleString()}</b>
                 </div>
 
                 <Link to={`/quotes/${quote.id}/edit`} className="btn btn-sm btn-grey">
-                  Edit
+                  {t('Edit')}
                 </Link>
               </div>
 
               <div>
-                Created By:{' '}
+                {t('Created By')}:{' '}
                 <b>
                   {quote.account.firstName} {quote.account.lastName}, {quote.account.email}
                 </b>{' '}
@@ -68,19 +70,20 @@ export default function QuoteDetails({ match }) {
               </div>
 
               <div>
-                Is Service Provider quote: <b>{quote.serviceProviderQuoteId ? 'Yes' : 'No'}</b>
+                {t('Is Service Provider quote')}:{' '}
+                <b>{quote.serviceProviderQuoteId ? t('Yes') : t('No')}</b>
               </div>
 
               <div className="mt-1">
-                Customer Name: <b>{quote.customer.name}</b>
+                {t('Customer Name')}: <b>{quote.customer.name}</b>
               </div>
 
               <div>
-                Customer Email: <b>{quote.customer.email}</b>
+                {t('Customer Email')}: <b>{quote.customer.email}</b>
               </div>
 
               <div>
-                Customer Address:{' '}
+                {t('Customer Address')}:{' '}
                 <b>
                   {quote.address.street}, {quote.address.zipCode} {quote.address.city}
                   {', '}
@@ -89,15 +92,16 @@ export default function QuoteDetails({ match }) {
               </div>
 
               <div className="mt-1">
-                Total: <b>${quote.total}</b>
+                {t('Total')}: <b>${quote.total}</b>
               </div>
 
               <div>
-                Status: <b style={{ color: getColorByStatus(quote.status) }}>{quote.status}</b>
+                {t('Status')}:{' '}
+                <b style={{ color: getColorByStatus(quote.status) }}>{t(quote.status)}</b>
               </div>
 
               <div>
-                Description: <b>{quote.description}</b>
+                {t('Description')}: <b>{quote.description}</b>
               </div>
             </>
           )}

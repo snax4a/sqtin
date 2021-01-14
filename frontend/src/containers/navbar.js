@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { accountService } from '_services';
 import { Link } from 'react-router-dom';
 import { Navbar } from '../components';
@@ -7,6 +8,7 @@ import logo from '../logo.png';
 import userImage from '../user-image.png';
 
 export function NavbarContainer({ children }) {
+  const { t } = useTranslation();
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -27,15 +29,15 @@ export function NavbarContainer({ children }) {
       {!user && (
         <Navbar.Menu>
           <Navbar.MenuItem>
-            <Navbar.TextLink to={ROUTES.HOME}>Home</Navbar.TextLink>
+            <Navbar.TextLink to={ROUTES.HOME}>{t('Home')}</Navbar.TextLink>
           </Navbar.MenuItem>
 
           <Navbar.MenuItem>
-            <Navbar.TextLink to={ROUTES.FEATURES}>Features</Navbar.TextLink>
+            <Navbar.TextLink to={ROUTES.FEATURES}>{t('Features')}</Navbar.TextLink>
           </Navbar.MenuItem>
 
           <Navbar.MenuItem>
-            <Navbar.ButtonLink to={ROUTES.LOGIN}>Login</Navbar.ButtonLink>
+            <Navbar.ButtonLink to={ROUTES.LOGIN}>{t('Login')}</Navbar.ButtonLink>
           </Navbar.MenuItem>
         </Navbar.Menu>
       )}
@@ -48,21 +50,24 @@ export function NavbarContainer({ children }) {
 }
 
 function LoggedInNav(props) {
+  const { t } = useTranslation();
   const { user } = props;
 
   return (
     <>
       <Navbar.Menu>
         <Navbar.MenuItem>
-          <Navbar.TextLink to={ROUTES.CUSTOMERS}>Customers</Navbar.TextLink>
+          <Navbar.TextLink to={ROUTES.CUSTOMERS}>{t('Customers')}</Navbar.TextLink>
         </Navbar.MenuItem>
 
         <Navbar.MenuItem>
-          <Navbar.TextLink to={ROUTES.CUSTOMER_ADDRESSES}>Customer Addresses</Navbar.TextLink>
+          <Navbar.TextLink to={ROUTES.CUSTOMER_ADDRESSES}>
+            {t('Customer Addresses')}
+          </Navbar.TextLink>
         </Navbar.MenuItem>
 
         <Navbar.MenuItem>
-          <Navbar.TextLink to={ROUTES.QUOTES}>Quotes</Navbar.TextLink>
+          <Navbar.TextLink to={ROUTES.QUOTES}>{t('Quotes')}</Navbar.TextLink>
         </Navbar.MenuItem>
       </Navbar.Menu>
 
@@ -76,7 +81,7 @@ function LoggedInNav(props) {
 
         <Navbar.MenuItem>
           <Navbar.ButtonLink to="#" onClick={accountService.logout}>
-            Logout
+            {t('Logout')}
           </Navbar.ButtonLink>
         </Navbar.MenuItem>
       </Navbar.User>

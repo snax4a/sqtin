@@ -253,6 +253,16 @@ pre {
   color: $success-color;
 }
 
+.language-select {
+  width: 100px;
+  position: absolute;
+}
+
+.edit-btn {
+  text-align: center;
+  padding: 3px;
+}
+
 /* Tablets and under */
 @media (max-width: 966px) {
   .grid {

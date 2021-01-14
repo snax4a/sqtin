@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import * as ROUTES from 'constants/routes';
 import * as STATUSES from 'constants/statuses';
@@ -19,6 +20,7 @@ export default function QuoteAddEdit({ match }) {
   const { id } = match.params;
   const isAddMode = !id;
 
+  const { t } = useTranslation();
   const history = useHistory();
   const [user, setUser] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
@@ -78,21 +80,20 @@ export default function QuoteAddEdit({ match }) {
     setCustomerAddresses(filteredAddresses);
   };
 
-  const isInvalid = (fieldName) =>
-    validationErrors.some((el) => el.toLowerCase().indexOf(fieldName.toLowerCase()) > -1);
+  const isInvalid = (fieldName) => validationErrors.some((el) => el.indexOf(t(fieldName)) > -1);
 
   const isFormValid = async () => {
     setValidationErrors([]);
 
     const validationObject = {
-      selectedCustomerId: Yup.string().required('Customer is required'),
-      selectedAddressId: Yup.string().required('Address is required'),
-      description: Yup.string().required('Description is required'),
-      selectedStatus: Yup.string().required('Status is required'),
+      selectedCustomerId: Yup.string().required(t('Customer is required')),
+      selectedAddressId: Yup.string().required(t('Address is required')),
+      description: Yup.string().required(t('Description is required')),
+      selectedStatus: Yup.string().required(t('Status is required')),
       total: Yup.number()
-        .typeError('Total is required and must be a number')
-        .positive('Total must be a positive number')
-        .required('Total is required'),
+        .typeError(t('Total is required and must be a number'))
+        .positive(t('Total must be a positive number'))
+        .required(t('Total is required')),
     };
 
     if (isAddMode) delete validationObject.selectedStatus;
@@ -117,7 +118,7 @@ export default function QuoteAddEdit({ match }) {
       .then(() => {
         setSubmitting(false);
         history.push({ pathname: ROUTES.QUOTES });
-        alertService.success('Quote was successfully created.');
+        alertService.success(t('Quote created'));
       })
       .catch((error) => {
         setSubmitting(false);
@@ -131,7 +132,7 @@ export default function QuoteAddEdit({ match }) {
       .then(() => {
         setSubmitting(false);
         history.push({ pathname: `/quotes/${id}/details` });
-        alertService.success('Quote was successfully updated.');
+        alertService.success(t('Quote updated'));
       })
       .catch((error) => {
         setSubmitting(false);
@@ -179,12 +180,12 @@ export default function QuoteAddEdit({ match }) {
           {isFetching && <Loader centered />}
           {!isFetching && (
             <>
-              <Form.Title>{isAddMode ? 'Add Quote' : 'Edit Quote'}</Form.Title>
+              <Form.Title>{isAddMode ? t('Add Quote') : t('Edit Quote')}</Form.Title>
               {error && <Form.Error>{error}</Form.Error>}
               {validationErrors.length > 0 && (
                 <Form.Error>
-                  {validationErrors.map((e) => (
-                    <p>{e}</p>
+                  {validationErrors.map((e, i) => (
+                    <p key={i}>{e}</p>
                   ))}
                 </Form.Error>
               )}
@@ -201,7 +202,7 @@ export default function QuoteAddEdit({ match }) {
                   getCustomerAddresses(target.value);
                 }}
               >
-                <Form.Option value="">--- Select customer ---</Form.Option>
+                <Form.Option value="">{t('--- Select customer ---')}</Form.Option>
                 {customers.map((customer) => (
                   <Form.Option value={customer.id} key={customer.id}>
                     {customer.name}
@@ -216,7 +217,7 @@ export default function QuoteAddEdit({ match }) {
                 onBlur={({ target }) => setSelectedAddressId(target.value)}
                 onChange={({ target }) => setSelectedAddressId(target.value)}
               >
-                <Form.Option value="">--- Select customer address ---</Form.Option>
+                <Form.Option value="">{t('--- Select customer address ---')}</Form.Option>
                 {customerAddresses.map((address) => (
                   <Form.Option
                     value={address.addressId}
@@ -234,7 +235,7 @@ export default function QuoteAddEdit({ match }) {
                   onBlur={({ target }) => setSelectedStatus(target.value)}
                   onChange={({ target }) => setSelectedStatus(target.value)}
                 >
-                  <Form.Option value="">--- Select status ---</Form.Option>
+                  <Form.Option value="">{t('--- Select status ---')}</Form.Option>
                   {Object.values(STATUSES).map((status, index) => (
                     <Form.Option value={status} key={index}>
                       {status}
@@ -244,7 +245,7 @@ export default function QuoteAddEdit({ match }) {
               )}
 
               <Form.Input
-                placeholder="Description"
+                placeholder={t('Description')}
                 value={description}
                 onChange={({ target }) => setDescription(target.value)}
                 className={isInvalid('Description') ? 'invalid' : ''}
@@ -252,7 +253,7 @@ export default function QuoteAddEdit({ match }) {
 
               <Form.Input
                 type="number"
-                placeholder="Total"
+                placeholder={t('Total')}
                 step="0.01"
                 value={total}
                 onChange={({ target }) => setTotal(target.value)}
@@ -262,10 +263,10 @@ export default function QuoteAddEdit({ match }) {
               <Form.ButtonsContainer>
                 <Form.Submit type="submit" className="btn btn-block">
                   {isSubmitting && <Loader />}
-                  Save
+                  {t('Save')}
                 </Form.Submit>
                 <Link to={ROUTES.QUOTES} className="btn btn-secondary btn-block">
-                  Cancel
+                  {t('Cancel')}
                 </Link>
               </Form.ButtonsContainer>
             </>
