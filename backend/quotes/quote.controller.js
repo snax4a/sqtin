@@ -62,6 +62,7 @@ function updateSchema(req, res, next) {
     userId: Joi.number().integer().positive(),
     customerId: Joi.number().integer().positive(),
     addressId: Joi.number().integer().positive(),
+    status: Joi.string(),
   });
   validateRequest(req, next, schema);
 }

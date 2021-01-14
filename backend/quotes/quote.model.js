@@ -34,6 +34,10 @@ function model(sequelize) {
           { model: db.Address },
         ],
       },
+      withCustomer: {
+        attributes: { exclude: ["customerId"] },
+        include: [{ model: db.Customer }],
+      },
     },
   };
 

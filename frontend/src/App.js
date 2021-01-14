@@ -14,6 +14,9 @@ import {
   CustomerAddressList,
   CustomerAddressAddEdit,
   CustomerAddressDetails,
+  QuoteList,
+  QuoteAddEdit,
+  QuoteDetails,
 } from './pages';
 
 function App() {
@@ -28,6 +31,11 @@ function App() {
         <Route exact path={ROUTES.FEATURES} component={Features} />
         <Route exact path={ROUTES.LOGIN} component={Login} />
         <PrivateRoute exact path={ROUTES.DASHBOARD} component={Dashboard} />
+        <PrivateRoute exact path={ROUTES.QUOTES} component={QuoteList} />
+        <PrivateRoute exact path={ROUTES.QUOTE_ADD} component={QuoteAddEdit} />
+        <PrivateRoute exact path={ROUTES.QUOTE_EDIT} component={QuoteAddEdit} />
+        <PrivateRoute exact path={ROUTES.QUOTE_DETAILS} component={QuoteDetails} />
+        <PrivateRoute exact path={ROUTES.QUOTES} component={QuoteList} />
         <PrivateRoute exact path={ROUTES.CUSTOMERS} component={CustomerList} />
         <PrivateRoute exact path={ROUTES.CUSTOMER_ADD} component={CustomerAddEdit} />
         <PrivateRoute exact path={ROUTES.CUSTOMER_EDIT} component={CustomerAddEdit} />

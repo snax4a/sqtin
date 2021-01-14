@@ -1,7 +1,7 @@
-const { db, sequelize } = require("_helpers/sequelize");
+const { db } = require("_helpers/sequelize");
 
 exports.getAll = async () => {
-  return await db.Quote.findAll();
+  return await db.Quote.scope("withCustomer").findAll();
 };
 
 exports.getById = async (id) => {
