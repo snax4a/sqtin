@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { alertService, customerService, customerAddressService } from '_services';
 import { useHistory, Link } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -12,6 +13,7 @@ export default function CustomerAddressAddEdit({ match }) {
   const { customerId, addressId } = match.params;
   const isAddMode = !customerId || !addressId;
 
+  const { t } = useTranslation();
   const history = useHistory();
   const [isFetching, setIsFetching] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
@@ -64,25 +66,25 @@ export default function CustomerAddressAddEdit({ match }) {
     }
   }, [isAddMode, customerId, addressId]);
 
-  const isInvalid = (fieldName) => validationErrors.some((el) => el.indexOf(fieldName) > -1);
+  const isInvalid = (fieldName) => validationErrors.some((el) => el.indexOf(t(fieldName)) > -1);
 
   const isFormValid = async () => {
     setValidationErrors([]);
 
     let formObject = { name, selectedCustomerId, selectedAddressId };
     let schemaObject = {
-      name: Yup.string().required('Customer Address Name is required'),
-      selectedCustomerId: Yup.string().required('Customer is required'),
-      selectedAddressId: Yup.string().required('Address is required'),
+      name: Yup.string().required(t('Customer Address Name is required')),
+      selectedCustomerId: Yup.string().required(t('Customer is required')),
+      selectedAddressId: Yup.string().required(t('Address is required')),
     };
 
     if (showAddressForm) {
       const addressFormObject = { street, city, zipCode, state };
       const addressSchemaObject = {
-        street: Yup.string().required('Street is required'),
-        city: Yup.string().required('City is required'),
-        zipCode: Yup.string().required('ZIP Code is required'),
-        state: Yup.string().required('State is required'),
+        street: Yup.string().required(t('Street is required')),
+        city: Yup.string().required(t('City is required')),
+        zipCode: Yup.string().required(t('ZIP Code is required')),
+        state: Yup.string().required(t('State is required')),
       };
 
       delete formObject.selectedAddressId;
@@ -108,7 +110,7 @@ export default function CustomerAddressAddEdit({ match }) {
       .then(() => {
         setSubmitting(false);
         history.push({ pathname: ROUTES.CUSTOMER_ADDRESSES });
-        alertService.success('The customer address was successfully created.');
+        alertService.success(t('Customer address created'));
       })
       .catch((error) => {
         setSubmitting(false);
@@ -124,7 +126,7 @@ export default function CustomerAddressAddEdit({ match }) {
         history.push({
           pathname: `/customer/${customerId}/address/${res.address.id}/details`,
         });
-        alertService.success('The customer address was successfully updated.');
+        alertService.success(t('Customer address updated'));
       })
       .catch((error) => {
         console.log(error);
@@ -178,21 +180,20 @@ export default function CustomerAddressAddEdit({ match }) {
               )}
 
               <Form.Input
-                placeholder="Customer Address Name"
+                placeholder={t('Address Name')}
                 value={name}
                 onChange={({ target }) => setName(target.value)}
                 className={isInvalid('Name') ? 'invalid' : ''}
               />
 
               <Form.Select
-                name="customer"
                 value={selectedCustomerId}
                 disabled={!isAddMode}
                 className={isInvalid('Customer') ? 'invalid' : ''}
                 onBlur={({ target }) => setSelectedCustomerId(target.value)}
                 onChange={({ target }) => setSelectedCustomerId(target.value)}
               >
-                <Form.Option value="">--- Select customer ---</Form.Option>
+                <Form.Option value="">{t('--- Select customer ---')}</Form.Option>
                 {customers.map((customer) => (
                   <Form.Option value={customer.id} key={customer.id}>
                     {customer.name}
@@ -203,13 +204,12 @@ export default function CustomerAddressAddEdit({ match }) {
               {!showAddressForm && (
                 <div className="form__control address-select">
                   <select
-                    name="address"
                     value={selectedAddressId}
                     className={isInvalid('Address') ? 'invalid' : ''}
                     onBlur={({ target }) => setSelectedAddressId(target.value)}
                     onChange={({ target }) => setSelectedAddressId(target.value)}
                   >
-                    <Form.Option value="">--- Select address details ---</Form.Option>
+                    <Form.Option value="">{t('--- Select address details ---')}</Form.Option>
                     {addresses.map((address) => (
                       <Form.Option value={address.id} key={address.id}>
                         {address.street}, {address.zipCode} {address.city}
@@ -223,7 +223,7 @@ export default function CustomerAddressAddEdit({ match }) {
                     className="btn btn-sm"
                     onClick={() => setShowAddressForm(true)}
                   >
-                    Add New
+                    {t('Add New')}
                   </button>
                 </div>
               )}
@@ -231,28 +231,28 @@ export default function CustomerAddressAddEdit({ match }) {
               {showAddressForm && (
                 <div className="form__control grid">
                   <Form.Input
-                    placeholder="Street"
+                    placeholder={t('Street')}
                     value={street}
                     onChange={({ target }) => setStreet(target.value)}
                     className={isInvalid('Street') ? 'invalid' : ''}
                   />
 
                   <Form.Input
-                    placeholder="City"
+                    placeholder={t('City')}
                     value={city}
                     onChange={({ target }) => setCity(target.value)}
                     className={isInvalid('City') ? 'invalid' : ''}
                   />
 
                   <Form.Input
-                    placeholder="ZIP Code"
+                    placeholder={t('ZIP Code')}
                     value={zipCode}
                     onChange={({ target }) => setZipCode(target.value)}
-                    className={isInvalid('ZIP') ? 'invalid' : ''}
+                    className={isInvalid('ZIP Code') ? 'invalid' : ''}
                   />
 
                   <Form.Input
-                    placeholder="State"
+                    placeholder={t('State')}
                     value={state}
                     onChange={({ target }) => setState(target.value)}
                     className={isInvalid('State') ? 'invalid' : ''}
@@ -263,10 +263,10 @@ export default function CustomerAddressAddEdit({ match }) {
               <Form.ButtonsContainer>
                 <Form.Submit type="submit" className="btn btn-block">
                   {isSubmitting && <Loader />}
-                  Save
+                  {t('Save')}
                 </Form.Submit>
                 <Link to={ROUTES.CUSTOMER_ADDRESSES} className="btn btn-secondary btn-block">
-                  Cancel
+                  {t('Cancel')}
                 </Link>
               </Form.ButtonsContainer>
             </>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { alertService, customerService } from '_services';
 import { useHistory, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import * as ROUTES from 'constants/routes';
 import { NavbarContainer } from 'containers/navbar';
@@ -9,6 +10,7 @@ import { FooterContainer } from 'containers/footer';
 import { Form, Loader } from 'components';
 
 export default function CustomerAddEdit({ match }) {
+  const { t } = useTranslation();
   const { id } = match.params;
   const isAddMode = !id;
 
@@ -36,11 +38,11 @@ export default function CustomerAddEdit({ match }) {
   }, [id]);
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
-    email: Yup.string().email('Email is invalid').required('Email is required'),
+    name: Yup.string().required(t('Name is required')),
+    email: Yup.string().email(t('Email is invalid')).required(t('Email is required')),
   });
 
-  const isInvalid = (fieldName) => validationErrors.some((el) => el.indexOf(fieldName) > -1);
+  const isInvalid = (fieldName) => validationErrors.some((el) => el.indexOf(t(fieldName)) > -1);
 
   const isFormValid = async () => {
     setValidationErrors([]);
@@ -60,7 +62,7 @@ export default function CustomerAddEdit({ match }) {
       .then(() => {
         setSubmitting(false);
         history.push({ pathname: ROUTES.CUSTOMERS });
-        alertService.success('The customer was successfully created.');
+        alertService.success(t('Customer created'));
       })
       .catch((error) => {
         setSubmitting(false);
@@ -74,7 +76,7 @@ export default function CustomerAddEdit({ match }) {
       .then(() => {
         setSubmitting(false);
         history.push({ pathname: `/customer/${id}/details` });
-        alertService.success('The customer was successfully updated.');
+        alertService.success(t('Customer updated'));
       })
       .catch((error) => {
         setSubmitting(false);
@@ -109,18 +111,18 @@ export default function CustomerAddEdit({ match }) {
           {isFetching && <Loader centered />}
           {!isFetching && (
             <>
-              <Form.Title>{isAddMode ? 'Add Customer' : 'Edit Customer'}</Form.Title>
+              <Form.Title>{isAddMode ? t('Add Customer') : t('Edit Customer')}</Form.Title>
               {error && <Form.Error>{error}</Form.Error>}
               {validationErrors.length > 0 && (
                 <Form.Error>
-                  {validationErrors.map((e) => (
-                    <p>{e}</p>
+                  {validationErrors.map((e, i) => (
+                    <p key={i}>{e}</p>
                   ))}
                 </Form.Error>
               )}
 
               <Form.Input
-                placeholder="Name"
+                placeholder={t('Name')}
                 value={name}
                 onChange={({ target }) => setName(target.value)}
                 className={isInvalid('Name') ? 'invalid' : ''}
@@ -136,10 +138,10 @@ export default function CustomerAddEdit({ match }) {
               <Form.ButtonsContainer>
                 <Form.Submit type="submit" className="btn btn-block">
                   {isSubmitting && <Loader />}
-                  Save
+                  {t('Save')}
                 </Form.Submit>
                 <Link to={ROUTES.CUSTOMERS} className="btn btn-secondary btn-block">
-                  Cancel
+                  {t('Cancel')}
                 </Link>
               </Form.ButtonsContainer>
             </>

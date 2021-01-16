@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { accountService } from '_services';
 import { useHistory, useLocation } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -9,6 +10,7 @@ import { FooterContainer } from '../containers/footer';
 import { Form, Loader } from '../components';
 
 export default function Login() {
+  const { t } = useTranslation();
   const history = useHistory();
   const location = useLocation();
   const [isSubmitting, setSubmitting] = useState(false);
@@ -18,13 +20,13 @@ export default function Login() {
   const [validationErrors, setValidationErrors] = useState([]);
 
   const validationSchema = Yup.object().shape({
-    emailAddress: Yup.string().email('Email is invalid').required('Email is required'),
+    emailAddress: Yup.string().email(t('Email is invalid')).required(t('Email is required')),
     password: Yup.string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('Password is required'),
+      .min(6, t('Password must be at least 6 characters'))
+      .required(t('Password is required')),
   });
 
-  const isInvalid = (fieldName) => validationErrors.some((el) => el.indexOf(fieldName) > -1);
+  const isInvalid = (fieldName) => validationErrors.some((el) => el.indexOf(t(fieldName)) > -1);
 
   const isFormValid = async () => {
     setValidationErrors([]);
@@ -69,7 +71,7 @@ export default function Login() {
           method="POST"
           style={{ padding: 40, width: 400, marginLeft: 'auto', marginRight: 'auto' }}
         >
-          <Form.Title>Login To Dashboard</Form.Title>
+          <Form.Title>{t('Login To Dashboard')}</Form.Title>
           {error && <Form.Error>{error}</Form.Error>}
           {validationErrors.length > 0 && (
             <Form.Error>
@@ -80,7 +82,7 @@ export default function Login() {
           )}
 
           <Form.Input
-            placeholder="Email address"
+            placeholder={t('Email address')}
             value={emailAddress}
             onChange={({ target }) => setEmailAddress(target.value)}
             className={isInvalid('Email') ? 'invalid' : ''}
@@ -89,13 +91,13 @@ export default function Login() {
             type="password"
             value={password}
             autoComplete="off"
-            placeholder="Password"
+            placeholder={t('Password')}
             onChange={({ target }) => setPassword(target.value)}
             className={isInvalid('Password') ? 'invalid' : ''}
           />
           <Form.Submit type="submit" className="btn-block">
             {isSubmitting && <Loader />}
-            Login
+            {t('Login')}
           </Form.Submit>
         </Form>
       </PageContainer>
