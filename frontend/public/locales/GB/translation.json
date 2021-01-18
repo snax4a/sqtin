@@ -95,5 +95,21 @@
   "Password is required": "Password is required",
   "Password must be at least 6 characters": "Password must be at least 6 characters",
   "Confirm Password is required": "Confirm Password is required",
-  "Passwords must match": "Passwords must match"
+  "Passwords must match": "Passwords must match",
+  "User Accounts": "User Accounts",
+  "Home Page": "Home Page",
+  "Account deleted": "Account was successfully deleted.",
+  "Account created": "Account was successfully created.",
+  "Account updated": "Account was successfully updated.",
+  "Account List": "Account List",
+  "Account Details": "Account Details",
+  "Add New Account": "Add New Account",
+  "Role": "Role",
+  "First Name": "First Name",
+  "Last Name": "Last Name",
+  "Add Account": "Add Account",
+  "Edit Account": "Edit Account",
+  "--- Select role ---": "--- Select role ---",
+  "Role is required": "Role is required",
+  "No permission": "You don't have required permission, Manager has to grant you a role."
 }

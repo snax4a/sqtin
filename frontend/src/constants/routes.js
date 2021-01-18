@@ -1,7 +1,10 @@
 export const HOME = '/';
 export const FEATURES = '/features';
 export const LOGIN = '/account/login';
-export const ACCOUNT_DETAILS = '/account/details';
+export const ACCOUNT_ADD = '/accounts/add';
+export const ACCOUNT_EDIT = '/accounts/:id/edit';
+export const ACCOUNT_DETAILS = '/accounts/:id/details';
+export const ACCOUNTS = '/accounts';
 export const DASHBOARD = '/dashboard';
 export const CUSTOMERS = '/customers';
 export const CUSTOMER_DETAILS = '/customer/:id/details';

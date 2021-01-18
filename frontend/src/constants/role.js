@@ -1,5 +1,3 @@
-export const Role = {
-  User: 'user',
-  Manager: 'manager',
-  ServiceProvider: 'service-provider',
-};
+export const User = 'user';
+export const Manager = 'manager';
+export const ServiceProvider = 'service-provider';

@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 import { PrivateRoute, Alert } from 'components';
 import * as ROUTES from 'constants/routes';
+import * as ROLES from 'constants/role';
 
 import {
   Features,
@@ -17,6 +18,9 @@ import {
   QuoteList,
   QuoteAddEdit,
   QuoteDetails,
+  AccountList,
+  AccountAddEdit,
+  AccountDetails,
 } from './pages';
 
 function App() {
@@ -37,20 +41,55 @@ function App() {
         <PrivateRoute exact path={ROUTES.QUOTE_DETAILS} component={QuoteDetails} />
         <PrivateRoute exact path={ROUTES.QUOTES} component={QuoteList} />
         <PrivateRoute exact path={ROUTES.CUSTOMERS} component={CustomerList} />
-        <PrivateRoute exact path={ROUTES.CUSTOMER_ADD} component={CustomerAddEdit} />
-        <PrivateRoute exact path={ROUTES.CUSTOMER_EDIT} component={CustomerAddEdit} />
+        <PrivateRoute
+          exact
+          path={ROUTES.CUSTOMER_ADD}
+          component={CustomerAddEdit}
+          roles={ROLES.Manager}
+        />
+        <PrivateRoute
+          exact
+          path={ROUTES.CUSTOMER_EDIT}
+          component={CustomerAddEdit}
+          roles={ROLES.Manager}
+        />
         <PrivateRoute exact path={ROUTES.CUSTOMER_DETAILS} component={CustomerDetails} />
         <PrivateRoute exact path={ROUTES.CUSTOMER_ADDRESSES} component={CustomerAddressList} />
-        <PrivateRoute exact path={ROUTES.CUSTOMER_ADDRESS_ADD} component={CustomerAddressAddEdit} />
+        <PrivateRoute
+          exact
+          path={ROUTES.CUSTOMER_ADDRESS_ADD}
+          component={CustomerAddressAddEdit}
+          roles={ROLES.Manager}
+        />
         <PrivateRoute
           exact
           path={ROUTES.CUSTOMER_ADDRESS_EDIT}
           component={CustomerAddressAddEdit}
+          roles={ROLES.Manager}
         />
         <PrivateRoute
           exact
           path={ROUTES.CUSTOMER_ADDRESS_DETAILS}
           component={CustomerAddressDetails}
+        />
+        <PrivateRoute exact path={ROUTES.ACCOUNTS} component={AccountList} roles={ROLES.Manager} />
+        <PrivateRoute
+          exact
+          path={ROUTES.ACCOUNT_ADD}
+          component={AccountAddEdit}
+          roles={ROLES.Manager}
+        />
+        <PrivateRoute
+          exact
+          path={ROUTES.ACCOUNT_EDIT}
+          component={AccountAddEdit}
+          roles={ROLES.Manager}
+        />
+        <PrivateRoute
+          exact
+          path={ROUTES.ACCOUNT_DETAILS}
+          component={AccountDetails}
+          roles={ROLES.Manager}
         />
         <Redirect from="*" to="/" />
       </Switch>
