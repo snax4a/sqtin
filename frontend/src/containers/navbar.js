@@ -12,8 +12,7 @@ export function NavbarContainer({ children }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const subscription = accountService.user.subscribe((x) => setUser(x));
-    return subscription.unsubscribe();
+    accountService.user.subscribe((x) => setUser(x));
   }, []);
 
   return (
@@ -67,7 +66,7 @@ function LoggedInNav(props) {
 
       <Navbar.User>
         <Navbar.MenuItem className="user">
-          <Navbar.TextLink to={ROUTES.ACCOUNT_DETAILS}>
+          <Navbar.TextLink to={ROUTES.ACCOUNT_SETTINGS}>
             <Navbar.UserImage src={userImage} />
             {user.firstName} {user.lastName}
           </Navbar.TextLink>

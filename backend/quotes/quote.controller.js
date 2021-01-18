@@ -17,23 +17,43 @@ router.delete("/:id", authorize([Role.Manager, Role.ServiceProvider]), _delete);
 module.exports = router;
 
 function getAll(req, res, next) {
-  quoteService
-    .getAll()
-    .then((quotes) => res.json(quotes))
-    .catch(next);
+  // Managers can see all quotes, service providers can see only their quotes
+  if (req.user.role !== Role.Manager) {
+    quoteService
+      .getAllByUser(req.user.id)
+      .then((quotes) => res.json(quotes))
+      .catch(next);
+  } else {
+    quoteService
+      .getAll()
+      .then((quotes) => res.json(quotes))
+      .catch(next);
+  }
 }
 
 function getById(req, res, next) {
   quoteService
     .getById(req.params.id)
-    .then((quote) => (quote ? res.json(quote) : res.sendStatus(404)))
+    .then((quote) => {
+      if (!quote) return res.sendStatus(404);
+      if (quote.accountId !== req.user.id && req.user.role !== Role.Manager) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+      return res.json(quote);
+    })
     .catch(next);
 }
 
 function getWithDetails(req, res, next) {
   quoteService
     .getWithDetails(req.params.id)
-    .then((quote) => (quote ? res.json(quote) : res.sendStatus(404)))
+    .then((quote) => {
+      if (!quote) return res.sendStatus(404);
+      if (quote.account.id !== req.user.id && req.user.role !== Role.Manager) {
+        return res.status(404).json({ message: "Unauthorized" });
+      }
+      return res.json(quote);
+    })
     .catch(next);
 }
 

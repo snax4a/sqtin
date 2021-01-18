@@ -4,6 +4,12 @@ exports.getAll = async () => {
   return await db.Quote.scope("withCustomer").findAll();
 };
 
+exports.getAllByUser = async (accountId) => {
+  return await db.Quote.scope("withCustomer").findAll({
+    where: { accountId },
+  });
+};
+
 exports.getById = async (id) => {
   return await getQuote(id);
 };

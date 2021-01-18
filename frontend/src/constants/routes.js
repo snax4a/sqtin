@@ -4,6 +4,7 @@ export const LOGIN = '/account/login';
 export const ACCOUNT_ADD = '/accounts/add';
 export const ACCOUNT_EDIT = '/accounts/:id/edit';
 export const ACCOUNT_DETAILS = '/accounts/:id/details';
+export const ACCOUNT_SETTINGS = '/account-settings';
 export const ACCOUNTS = '/accounts';
 export const DASHBOARD = '/dashboard';
 export const CUSTOMERS = '/customers';

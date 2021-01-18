@@ -111,5 +111,6 @@
   "Edit Account": "Edytuj Konto",
   "--- Select role ---": "--- Wybierz rolę ---",
   "Role is required": "Rola jest wymagana",
-  "No permission": "Nie masz odpowiednich uprawnień, Manager musi przypisać Ci odpowiednią rolę."
+  "No permission": "Nie masz odpowiednich uprawnień, Manager musi przypisać Ci odpowiednią rolę.",
+  "Account Settings": "Ustawienia Konta"
 }

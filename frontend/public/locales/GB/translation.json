@@ -111,5 +111,6 @@
   "Edit Account": "Edit Account",
   "--- Select role ---": "--- Select role ---",
   "Role is required": "Role is required",
-  "No permission": "You don't have required permission, Manager has to grant you a role."
+  "No permission": "You don't have required permission, Manager has to grant you a role.",
+  "Account Settings": "Account Settings"
 }

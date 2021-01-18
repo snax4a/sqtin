@@ -21,6 +21,7 @@ import {
   AccountList,
   AccountAddEdit,
   AccountDetails,
+  AccountSettings,
 } from './pages';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route exact path={ROUTES.FEATURES} component={Features} />
         <Route exact path={ROUTES.LOGIN} component={Login} />
         <PrivateRoute exact path={ROUTES.DASHBOARD} component={Dashboard} />
+        <PrivateRoute exact path={ROUTES.ACCOUNT_SETTINGS} component={AccountSettings} />
         <PrivateRoute exact path={ROUTES.QUOTES} component={QuoteList} />
         <PrivateRoute exact path={ROUTES.QUOTE_ADD} component={QuoteAddEdit} />
         <PrivateRoute exact path={ROUTES.QUOTE_EDIT} component={QuoteAddEdit} />
