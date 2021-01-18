@@ -111,18 +111,25 @@ export default function AccountSettings() {
             onChange={({ target }) => setFirstName(target.value)}
             className={isInvalid('First Name') ? 'invalid' : ''}
           />
+
           <Form.Input
             placeholder={t('Last Name')}
             value={lastName}
             onChange={({ target }) => setLastName(target.value)}
             className={isInvalid('Last Name') ? 'invalid' : ''}
           />
+
           <Form.Input
             placeholder={t('Email')}
             value={email}
             onChange={({ target }) => setEmail(target.value)}
             className={isInvalid('Email') ? 'invalid' : ''}
           />
+
+          <Form.Select disabled>
+            <Form.Option value="">{user.role?.name}</Form.Option>
+          </Form.Select>
+
           <Form.Input
             type="password"
             placeholder={t('Password')}
@@ -130,6 +137,7 @@ export default function AccountSettings() {
             onChange={({ target }) => setPassword(target.value)}
             className={isInvalid('Password') ? 'invalid' : ''}
           />
+
           <Form.Input
             type="password"
             placeholder={t('Confirm Password')}
@@ -137,6 +145,7 @@ export default function AccountSettings() {
             onChange={({ target }) => setConfirmPassword(target.value)}
             className={isInvalid('Confirm Password') ? 'invalid' : ''}
           />
+
           <Form.ButtonsContainer>
             <Form.Submit type="submit" className="btn btn-block">
               {isSubmitting && <Loader />}
