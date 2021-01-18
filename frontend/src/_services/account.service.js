@@ -21,6 +21,7 @@ export const accountService = {
   get userValue() {
     return userSubject.value;
   },
+  userHasRole,
 };
 
 function login(email, password) {
@@ -86,6 +87,10 @@ function _delete(id) {
     }
     return x;
   });
+}
+
+function userHasRole(roleName) {
+  return userSubject?.value?.role?.name === roleName;
 }
 
 // helper functions

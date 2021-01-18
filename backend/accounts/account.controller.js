@@ -119,8 +119,8 @@ function getById(req, res, next) {
 
 function createSchema(req, res, next) {
   const schema = Joi.object({
-    firstName: Joi.string().required(),
-    lastName: Joi.string().required(),
+    firstName: Joi.string().empty(""),
+    lastName: Joi.string().empty(""),
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
     confirmPassword: Joi.string().valid(Joi.ref("password")).required(),
@@ -173,7 +173,7 @@ function _delete(req, res, next) {
   }
 
   accountService
-    ._delete(req.params.id)
+    .delete(req.params.id)
     .then(() => res.json({ message: "Account deleted successfully" }))
     .catch(next);
 }

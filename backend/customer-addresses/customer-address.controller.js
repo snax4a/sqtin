@@ -7,10 +7,18 @@ const Role = require("_helpers/role");
 const customerAddressService = require("./customer-address.service");
 
 // routes
-router.get("/address-list", authorize(Role.Manager), getAddressList);
-router.get("/", authorize(Role.Manager), getAll);
-router.get("/customer/:customerId/address/:addressId", authorize(Role.Manager), getById);
-router.get("/customer/:customerId/address/:addressId/details", authorize(Role.Manager), getDetails);
+router.get("/address-list", authorize([Role.Manager, Role.ServiceProvider]), getAddressList);
+router.get("/", authorize([Role.Manager, Role.ServiceProvider]), getAll);
+router.get(
+  "/customer/:customerId/address/:addressId",
+  authorize([Role.Manager, Role.ServiceProvider]),
+  getById
+);
+router.get(
+  "/customer/:customerId/address/:addressId/details",
+  authorize([Role.Manager, Role.ServiceProvider]),
+  getDetails
+);
 router.post("/", authorize(Role.Manager), createSchema, create);
 router.put(
   "/customer/:customerId/address/:addressId",

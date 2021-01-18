@@ -95,5 +95,21 @@
   "Password is required": "Hasło jest wymagane",
   "Password must be at least 6 characters": "Hasło musi mieć conajmniej 6 znaków",
   "Confirm Password is required": "Potwierdź hasło jest wymagane",
-  "Passwords must match": "Hasła muszą być takie same"
+  "Passwords must match": "Hasła muszą być takie same",
+  "User Accounts": "Konta użytkowników",
+  "Home Page": "Strona Główna",
+  "Account deleted": "Konto zostało pomyślnie usunięte.",
+  "Account created": "Konto zostało pomyślnie utworzone utworzone.",
+  "Account updated": "Konto zostało pomyślnie zaaktualizowane.",
+  "Account List": "Lista Kont",
+  "Account Details": "Szczegóły Konta",
+  "Add New Account": "Dodaj Nowe Konto",
+  "Role": "Rola",
+  "First Name": "Imię",
+  "Last Name": "Nazwisko",
+  "Add Account": "Dodaj Konto",
+  "Edit Account": "Edytuj Konto",
+  "--- Select role ---": "--- Wybierz rolę ---",
+  "Role is required": "Rola jest wymagana",
+  "No permission": "Nie masz odpowiednich uprawnień, Manager musi przypisać Ci odpowiednią rolę."
 }

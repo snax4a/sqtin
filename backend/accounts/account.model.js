@@ -26,7 +26,7 @@ function model(sequelize) {
     },
     scopes: {
       // include hash with this scope
-      withHash: { attributes: {} },
+      withHash: { attributes: {}, include: [{ model: db.Role }] },
       withRole: { attributes: { exclude: ["passwordHash"] }, include: [{ model: db.Role }] },
     },
   };

@@ -57,17 +57,11 @@ function LoggedInNav(props) {
     <>
       <Navbar.Menu>
         <Navbar.MenuItem>
-          <Navbar.TextLink to={ROUTES.CUSTOMERS}>{t('Customers')}</Navbar.TextLink>
+          <Navbar.TextLink to={ROUTES.HOME}>{t('Home Page')}</Navbar.TextLink>
         </Navbar.MenuItem>
 
         <Navbar.MenuItem>
-          <Navbar.TextLink to={ROUTES.CUSTOMER_ADDRESSES}>
-            {t('Customer Addresses')}
-          </Navbar.TextLink>
-        </Navbar.MenuItem>
-
-        <Navbar.MenuItem>
-          <Navbar.TextLink to={ROUTES.QUOTES}>{t('Quotes')}</Navbar.TextLink>
+          <Navbar.TextLink to={ROUTES.DASHBOARD}>{t('Dashboard')}</Navbar.TextLink>
         </Navbar.MenuItem>
       </Navbar.Menu>
 

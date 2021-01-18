@@ -11,3 +11,6 @@ export { default as CustomerAddressDetails } from './customers/customer-address-
 export { default as QuoteList } from './quotes/quote-list';
 export { default as QuoteDetails } from './quotes/details';
 export { default as QuoteAddEdit } from './quotes/add-edit';
+export { default as AccountList } from './accounts/account-list';
+export { default as AccountDetails } from './accounts/details';
+export { default as AccountAddEdit } from './accounts/add-edit';

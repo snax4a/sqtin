@@ -6,13 +6,15 @@ import { FooterContainer } from 'containers/footer';
 import { Card, Table, Loader } from 'components';
 import { Link } from 'react-router-dom';
 import * as ROUTES from 'constants/routes';
-import { alertService, customerService } from '_services';
+import * as ROLE from 'constants/role';
+import { alertService, customerService, accountService } from '_services';
 
 export default function CustomerDetails({ match }) {
   const { t } = useTranslation();
   const [customer, setCustomer] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const { id } = match.params;
+  const isManager = accountService.userHasRole(ROLE.Manager);
 
   useEffect(() => {
     setIsFetching(true);
@@ -42,9 +44,11 @@ export default function CustomerDetails({ match }) {
               <h2>
                 Email: <b>{customer.email}</b>
               </h2>
-              <Link to={`/customer/${customer.id}/edit`} className="btn btn-sm btn-grey edit-btn">
-                {t('Edit')}
-              </Link>
+              {isManager && (
+                <Link to={`/customer/${customer.id}/edit`} className="btn btn-sm btn-grey edit-btn">
+                  {t('Edit')}
+                </Link>
+              )}
             </>
           )}
         </Card>
@@ -82,9 +86,11 @@ export default function CustomerDetails({ match }) {
           <Table.Foot>
             <tr>
               <th colSpan="5">
-                <Link to={ROUTES.CUSTOMER_ADDRESS_ADD} className="btn btn-sm btn-secondary">
-                  {t('Add New Address')}
-                </Link>
+                {isManager && (
+                  <Link to={ROUTES.CUSTOMER_ADDRESS_ADD} className="btn btn-sm btn-secondary">
+                    {t('Add New Address')}
+                  </Link>
+                )}
               </th>
             </tr>
           </Table.Foot>

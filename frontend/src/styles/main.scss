@@ -263,6 +263,44 @@ pre {
   padding: 3px;
 }
 
+/* Dashboard */
+.dashboard-links {
+  .card {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    svg {
+      font-size: 35px;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.user-details {
+  width: 500px;
+  margin: 10px auto;
+
+  img {
+    height: 100px;
+    width: auto;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1150px) {
+  .dashboard-links {
+    grid-template-columns: repeat(2, 1fr) !important;
+    text-align: center;
+  }
+}
+
 /* Tablets and under */
 @media (max-width: 966px) {
   .grid {

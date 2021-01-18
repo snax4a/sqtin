@@ -5,13 +5,15 @@ import { PageContainer } from 'containers/page';
 import { FooterContainer } from 'containers/footer';
 import { Card, Loader } from 'components';
 import { Link } from 'react-router-dom';
-import { alertService, customerAddressService } from '_services';
+import { alertService, customerAddressService, accountService } from '_services';
+import * as ROLE from 'constants/role';
 
 export default function CustomerAddressDetails({ match }) {
   const { t } = useTranslation();
   const [customerAddress, setCustomerAddress] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const { customerId, addressId } = match.params;
+  const isManager = accountService.userHasRole(ROLE.Manager);
 
   useEffect(() => {
     setIsFetching(true);
@@ -38,12 +40,14 @@ export default function CustomerAddressDetails({ match }) {
               <h2>
                 {t('Address Name')}: <b>{customerAddress.name}</b>
               </h2>
-              <Link
-                to={`/customer/${customerAddress.customerId}/address/${customerAddress.addressId}/edit`}
-                className="btn btn-sm btn-grey edit-btn"
-              >
-                {t('Edit')}
-              </Link>
+              {isManager && (
+                <Link
+                  to={`/customer/${customerAddress.customerId}/address/${customerAddress.addressId}/edit`}
+                  className="btn btn-sm btn-grey edit-btn"
+                >
+                  {t('Edit')}
+                </Link>
+              )}
             </>
           )}
         </Card>

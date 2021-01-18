@@ -5,13 +5,15 @@ import { FooterContainer } from 'containers/footer';
 import { Table } from 'components';
 import { Link } from 'react-router-dom';
 import * as ROUTES from 'constants/routes';
-import { alertService, customerService } from '_services';
+import * as ROLE from 'constants/role';
+import { alertService, customerService, accountService } from '_services';
 import { useTranslation } from 'react-i18next';
 
 export default function CustomerList() {
   const { t } = useTranslation();
   const [customers, setCustomers] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
+  const isManager = accountService.userHasRole(ROLE.Manager);
 
   useEffect(() => {
     fetchCustomers();
@@ -53,7 +55,7 @@ export default function CustomerList() {
               <th>ID</th>
               <th>{t('Name')}</th>
               <th>E-mail</th>
-              <th style={{ width: 290 }}>{t('Actions')}</th>
+              <th style={{ width: isManager ? 290 : 70 }}>{t('Actions')}</th>
             </tr>
           </Table.Head>
 
@@ -72,20 +74,24 @@ export default function CustomerList() {
                         {t('Details')}
                       </Link>
                     </li>
-                    <li>
-                      <Link to={`/customer/${customer.id}/edit`} className="btn btn-grey">
-                        {t('Edit')}
-                      </Link>
-                    </li>
-                    <li>
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        onClick={() => deleteCustomer(customer.id)}
-                      >
-                        {t('Delete')}
-                      </button>
-                    </li>
+                    {isManager && (
+                      <>
+                        <li>
+                          <Link to={`/customer/${customer.id}/edit`} className="btn btn-grey">
+                            {t('Edit')}
+                          </Link>
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className="btn btn-secondary"
+                            onClick={() => deleteCustomer(customer.id)}
+                          >
+                            {t('Delete')}
+                          </button>
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </td>
               </tr>
@@ -95,9 +101,11 @@ export default function CustomerList() {
           <Table.Foot>
             <tr>
               <th colSpan="4">
-                <Link to={ROUTES.CUSTOMER_ADD} className="btn btn-sm btn-secondary">
-                  {t('Add New Customer')}
-                </Link>
+                {isManager && (
+                  <Link to={ROUTES.CUSTOMER_ADD} className="btn btn-sm btn-secondary">
+                    {t('Add New Customer')}
+                  </Link>
+                )}
               </th>
             </tr>
           </Table.Foot>
