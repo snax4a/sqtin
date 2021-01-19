@@ -5,10 +5,10 @@ module.exports = model;
 
 function model(sequelize) {
   const attributes = {
-    email: { type: DataTypes.STRING, allowNull: false },
+    email: { type: DataTypes.STRING(30), allowNull: false },
     passwordHash: { type: DataTypes.STRING, allowNull: false },
-    firstName: { type: DataTypes.STRING, allowNull: true },
-    lastName: { type: DataTypes.STRING, allowNull: true },
+    firstName: { type: DataTypes.STRING(20), allowNull: true },
+    lastName: { type: DataTypes.STRING(20), allowNull: true },
     created: {
       type: DataTypes.DATE,
       allowNull: false,

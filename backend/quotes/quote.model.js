@@ -11,7 +11,7 @@ function model(sequelize) {
       defaultValue: 0,
     },
     description: { type: DataTypes.STRING, allowNull: true },
-    status: { type: DataTypes.STRING, allowNull: false, defaultValue: "OPEN" },
+    status: { type: DataTypes.STRING(20), allowNull: false, defaultValue: "OPEN" },
     serviceProviderQuoteId: { type: DataTypes.INTEGER, allowNull: true },
     created: {
       type: DataTypes.DATE,

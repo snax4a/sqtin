@@ -6,7 +6,7 @@ function model(sequelize) {
   const attributes = {
     customerId: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true },
     addressId: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true },
-    name: { type: DataTypes.STRING, allowNull: false },
+    name: { type: DataTypes.STRING(100), allowNull: false },
   };
 
   const options = {
