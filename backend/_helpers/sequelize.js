@@ -5,13 +5,18 @@ const { Sequelize } = require("sequelize");
 const Role = require("./role");
 
 const { host, port, user, password, database } = config.database;
-
 let db = {};
 const sequelize = new Sequelize(database, user, password, {
   dialect: "mysql",
+  host,
+  port,
 });
 
-initialize();
+try {
+  initialize();
+} catch (error) {
+  console.error("Sequelize INIT ERROR:", error);
+}
 
 module.exports = { db, sequelize };
 
