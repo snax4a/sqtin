@@ -9,7 +9,9 @@
 ###### Instalacja:
 
 `git clone https://github.com/snax4a/service-quotes.git`
+
 `cd service-quotes`
+
 `docker-compose up -d --build`
 
 Po zbudowaniu i uruchomieniu kontenerów dostępne będą:
@@ -18,10 +20,12 @@ Po zbudowaniu i uruchomieniu kontenerów dostępne będą:
 - Baza danych MYSQL na localhost:3306
 
 Baza danych została wypełniona testowymi danymi.
+
 Dostępne są 3 konta użytkowników:
 - manager@test.com / test123 (rola manager, najwyższe uprawnienia)
 - service-provider@test.com / test123 (rola service-provider, ograniczone uprawnienia)
 - user@test.com / test123 (domyślna rola przydzielana po rejestracji użytkownika, brak uprawnień w panelu zarządzania)
+
 
 
 ### Definicja projektu:
